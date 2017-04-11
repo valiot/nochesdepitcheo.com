@@ -1,0 +1,16 @@
+// Wrapper without another div
+wrapped($n = 1120px)
+  padding-left 'calc(50% - (%s / 2))' % $n
+  padding-right 'calc(50% - (%s / 2))' % $n
+  
+// Wrapper just left side
+wrapped-left($n = 1120px)
+  padding-left 'calc(50% - (%s / 2))' % $n
+
+// Wrapper just left side
+wrapped-right($n = 1120px)
+  padding-right 'calc(50% - (%s / 2))' % $n
+  
+// Soft Shadow
+shadow()
+  box-shadow 0 10px 20px 0 rgba(0, 0, 0, .1)

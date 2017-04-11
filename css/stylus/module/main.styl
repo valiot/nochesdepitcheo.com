@@ -1,0 +1,18 @@
+.main
+  wrapped()
+  width 100%
+  min-height 100vh
+  display flex
+  align-items center
+  
+  +below($desktop)
+    wrapped(90%)
+    padding-top 4rem
+    padding-bottom 4rem
+  
+  p
+    font-size 1.25rem
+    margin 0
+    
+  +above($tablet)
+    lost-column 8/12 0 0

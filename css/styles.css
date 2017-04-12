@@ -182,6 +182,29 @@ template {
 [hidden] {
   display: none;
 }
+.title {
+  font-size: calc(2.5rem + 1 * ((100vw - 26.25rem) / 53.75));
+  color: #004193;
+  line-height: 45px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+@media screen and (min-width: 1280px) {
+  .title {
+    font-size: 3.5rem;
+  }
+}
+@media screen and (max-width: 420px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}
+p {
+  font-size: 22px;
+  color: #474d54;
+  letter-spacing: 0;
+  line-height: 32px;
+}
 *,
 :before,
 :after {
@@ -192,10 +215,98 @@ body {
   font-family: 'Dosis', sans-serif;
   text-rendering: optimizeLegibility;
   font-size: 16px;
+  margin: 0;
 }
 @import url("https://fonts.googleapis.com/css?family=Dosis");
+.btn {
+  padding: 0.7rem 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 300ms all ease-in-out;
+}
+.btn--principal {
+  background-color: #004193;
+  color: #fff;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.btn--principal:hover {
+  background-color: #0058c6;
+}
+.mainHeader {
+  padding-left: calc(50% - (90% / 2));
+  padding-right: calc(50% - (90% / 2));
+  position: fixed;
+  top: 2rem;
+  right: 0;
+  left: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.mainHeader-logo {
+  width: 260px;
+  text-decoration: none;
+}
+.mainHeader-logo img {
+  width: 100%;
+  display: block;
+}
+.mainNav-link {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+}
+.roundImage {
+  box-shadow: 10px 10px 20px 0 rgba(155,155,155,0.5);
+  margin: 0;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.roundImage img {
+  width: 100%;
+  display: block;
+}
 .shopMain {
-  padding-left: calc(50% - (1120px / 2));
-  padding-right: calc(50% - (1120px / 2));
+  padding-left: calc(50% - (90% / 2));
+  padding-right: calc(50% - (90% / 2));
+  height: 100vh;
   background-color: #f9f9f9;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.shopMain .content,
+.shopMain .roundImage {
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-preferred-size: calc(99.9% * 5.5/12);
+      flex-basis: calc(99.9% * 5.5/12);
+  width: calc(99.9% * 5.5/12);
+}
+.shopMain .content:nth-child(1n),
+.shopMain .roundImage:nth-child(1n) {
+  margin-right: 0;
+  margin-left: 0;
+}
+.shopMain .content:last-child,
+.shopMain .roundImage:last-child {
+  margin-right: 0;
+}
+.shopMain .content:nth-child(0n),
+.shopMain .roundImage:nth-child(0n) {
+  margin-right: 0;
+  margin-left: auto;
+}
+.shopMain .content {
+  text-align: center;
 }

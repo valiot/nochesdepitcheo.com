@@ -223,21 +223,41 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   transition: 300ms all ease-in-out;
-}
-.btn--principal {
-  background-color: #004193;
   color: #fff;
   border-radius: 4px;
   letter-spacing: 1px;
   font-weight: 600;
 }
+.btn--principal {
+  background-color: #004193;
+}
 .btn--principal:hover {
   background-color: #0058c6;
+}
+.btn--buy {
+  background-color: #17d10c;
+}
+.btn--buy:hover {
+  background-color: #2af21e;
+}
+.image {
+  margin: 0;
+  overflow: hidden;
+}
+.image img {
+  width: 100%;
+  display: block;
+}
+.image--rounded {
+  border-radius: 4px;
+}
+.image--shadow {
+  box-shadow: 10px 10px 20px 0 rgba(155,155,155,0.5);
 }
 .mainHeader {
   padding-left: calc(50% - (90% / 2));
   padding-right: calc(50% - (90% / 2));
-  position: fixed;
+  position: absolute;
   top: 2rem;
   right: 0;
   left: 0;
@@ -261,15 +281,49 @@ body {
   text-decoration: none;
   font-weight: 600;
 }
-.roundImage {
-  box-shadow: 10px 10px 20px 0 rgba(155,155,155,0.5);
+.product {
+  text-decoration: none;
+}
+.product :hover .btn--buy {
+  bottom: 1rem;
+}
+.product-image {
   margin: 0;
   overflow: hidden;
   border-radius: 4px;
+  position: relative;
 }
-.roundImage img {
+.product-image img {
   width: 100%;
   display: block;
+}
+.product-info {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.product-name {
+  color: #004193;
+}
+.product-price {
+  color: #17d10c;
+}
+.product-name,
+.product-price {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+.btn--buy {
+  position: absolute;
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 250ms all ease-in-out;
 }
 .shopMain {
   padding-left: calc(50% - (90% / 2));
@@ -284,7 +338,7 @@ body {
       justify-content: space-between;
 }
 .shopMain .content,
-.shopMain .roundImage {
+.shopMain .image {
   -ms-flex-positive: 0;
       flex-grow: 0;
   -ms-flex-negative: 0;
@@ -294,19 +348,85 @@ body {
   width: calc(99.9% * 5.5/12);
 }
 .shopMain .content:nth-child(1n),
-.shopMain .roundImage:nth-child(1n) {
+.shopMain .image:nth-child(1n) {
   margin-right: 0;
   margin-left: 0;
 }
 .shopMain .content:last-child,
-.shopMain .roundImage:last-child {
+.shopMain .image:last-child {
   margin-right: 0;
 }
 .shopMain .content:nth-child(0n),
-.shopMain .roundImage:nth-child(0n) {
+.shopMain .image:nth-child(0n) {
   margin-right: 0;
   margin-left: auto;
 }
 .shopMain .content {
   text-align: center;
+}
+.shopAbout {
+  padding-left: calc(50% - (1120px / 2));
+  padding-right: calc(50% - (1120px / 2));
+  min-height: 80vh;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.shopAbout .content,
+.shopAbout .image {
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-preferred-size: calc(99.9% * 5.5/12);
+      flex-basis: calc(99.9% * 5.5/12);
+  width: calc(99.9% * 5.5/12);
+}
+.shopAbout .content:nth-child(1n),
+.shopAbout .image:nth-child(1n) {
+  margin-right: 0;
+  margin-left: 0;
+}
+.shopAbout .content:last-child,
+.shopAbout .image:last-child {
+  margin-right: 0;
+}
+.shopAbout .content:nth-child(0n),
+.shopAbout .image:nth-child(0n) {
+  margin-right: 0;
+  margin-left: auto;
+}
+.products {
+  padding-left: calc(50% - (1120px / 2));
+  padding-right: calc(50% - (1120px / 2));
+  min-height: 80vh;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.products .product {
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-preferred-size: calc(99.9% * 1/3 - (16px - 16px * 1/3));
+      flex-basis: calc(99.9% * 1/3 - (16px - 16px * 1/3));
+  width: calc(99.9% * 1/3 - (16px - 16px * 1/3));
+}
+.products .product:nth-child(1n) {
+  margin-right: 16px;
+  margin-left: 0;
+}
+.products .product:last-child {
+  margin-right: 0;
+}
+.products .product:nth-child(3n) {
+  margin-right: 0;
+  margin-left: auto;
 }

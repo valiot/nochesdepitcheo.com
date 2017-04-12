@@ -3,13 +3,19 @@
   text-decoration none
   text-transform uppercase
   transition 300ms all ease-in-out
+  color white
+  border-radius 4px
+  letter-spacing 1px
+  font-weight 600
   
   &--principal
     background-color $principal
-    color white
-    border-radius 4px
-    letter-spacing 1px
-    font-weight 600
     
     &:hover
       background-color lighten($principal, 10)
+      
+  &--buy
+    background-color $green
+    
+    &:hover
+      background-color lighten($green, 10)

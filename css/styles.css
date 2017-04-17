@@ -183,19 +183,22 @@ template {
   display: none;
 }
 .title {
-  font-size: calc(2.5rem + 1 * ((100vw - 26.25rem) / 53.75));
+  font-size: 2rem;
   color: #004193;
   line-height: 45px;
   text-transform: uppercase;
   font-weight: 600;
 }
+.title--big {
+  font-size: calc(2.5rem + 1 * ((100vw - 26.25rem) / 53.75));
+}
 @media screen and (min-width: 1280px) {
-  .title {
+  .title--big {
     font-size: 3.5rem;
   }
 }
 @media screen and (max-width: 420px) {
-  .title {
+  .title--big {
     font-size: 2.5rem;
   }
 }
@@ -328,7 +331,7 @@ body {
 .shopMain {
   padding-left: calc(50% - (90% / 2));
   padding-right: calc(50% - (90% / 2));
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f9f9f9;
   display: -ms-flexbox;
   display: flex;
@@ -429,4 +432,42 @@ body {
 .products .product:nth-child(3n) {
   margin-right: 0;
   margin-left: auto;
+}
+.nuevoAmanecer {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+  min-height: 80vh;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  background-color: #f9f9f9;
+}
+.nuevoAmanecer .content,
+.nuevoAmanecer .image {
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-preferred-size: calc(99.9% * 6/12);
+      flex-basis: calc(99.9% * 6/12);
+  width: calc(99.9% * 6/12);
+}
+.nuevoAmanecer .content:nth-child(1n),
+.nuevoAmanecer .image:nth-child(1n) {
+  margin-right: 0;
+  margin-left: 0;
+}
+.nuevoAmanecer .content:last-child,
+.nuevoAmanecer .image:last-child {
+  margin-right: 0;
+}
+.nuevoAmanecer .content:nth-child(0n),
+.nuevoAmanecer .image:nth-child(0n) {
+  margin-right: 0;
+  margin-left: auto;
+}
+.nuevoAmanecer .content {
+  padding-right: 6rem;
+  padding-left: 6rem;
 }

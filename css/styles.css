@@ -183,11 +183,22 @@ template {
   display: none;
 }
 .title {
-  font-size: 2rem;
-  color: #004193;
-  line-height: 45px;
+  font-size: calc(1.5rem + 0.5 * ((100vw - 26.25rem) / 53.75));
+  color: #00285a;
+  line-height: 3rem;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 400;
+  margin-top: 0;
+}
+@media screen and (min-width: 1280px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+@media screen and (max-width: 420px) {
+  .title {
+    font-size: 1.5rem;
+  }
 }
 .title--big {
   font-size: calc(2.5rem + 1 * ((100vw - 26.25rem) / 53.75));
@@ -202,10 +213,15 @@ template {
     font-size: 2.5rem;
   }
 }
+.subtitle {
+  margin-top: 0;
+  text-transform: uppercase;
+  font-size: 2rem;
+  color: #a01432;
+}
 p {
   font-size: 22px;
   color: #474d54;
-  letter-spacing: 0;
   line-height: 32px;
 }
 *,
@@ -232,16 +248,16 @@ body {
   font-weight: 600;
 }
 .btn--principal {
-  background-color: #004193;
+  background-color: #00285a;
 }
 .btn--principal:hover {
-  background-color: #0058c6;
+  background-color: #003f8d;
 }
-.btn--buy {
+.btn--action {
   background-color: #17d10c;
 }
-.btn--buy:hover {
-  background-color: #2af21e;
+.btn--action:hover {
+  background-color: #1ae90d;
 }
 .image {
   margin: 0;
@@ -270,6 +286,15 @@ body {
       align-items: center;
   -ms-flex-pack: justify;
       justify-content: space-between;
+  z-index: 10;
+}
+@media only screen and (max-width: 600px) {
+  .mainHeader {
+    -ms-flex-pack: center;
+        justify-content: center;
+    position: static;
+    margin-top: 2rem;
+  }
 }
 .mainHeader-logo {
   width: 260px;
@@ -279,10 +304,60 @@ body {
   width: 100%;
   display: block;
 }
+@media only screen and (max-width: 600px) {
+  .mainNav {
+    display: none;
+  }
+}
 .mainNav-link {
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 600;
+}
+.newsletter {
+  text-align: center;
+  bottom: 4rem;
+  position: absolute;
+}
+@media only screen and (max-width: 600px) {
+  .newsletter {
+    position: static;
+    margin-top: 6rem;
+  }
+}
+.newsletter-inputs {
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.email,
+.button {
+  font-size: 1rem;
+  font-family: 'Dosis', sans-serif;
+  letter-spacing: 2px;
+  border: 0;
+  text-align: center;
+}
+.email:focus,
+.button:focus {
+  outline: 0;
+}
+.email {
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+}
+.button {
+  padding: 0.75rem 2rem;
+  text-transform: uppercase;
+  background-color: #17d10c;
+  color: #fff;
+  font-weight: 600;
+  transition: 300ms all ease-in-out;
+}
+.button:hover {
+  background-color: #1ae90d;
 }
 .product {
   text-decoration: none;
@@ -311,7 +386,7 @@ body {
   text-transform: uppercase;
 }
 .product-name {
-  color: #004193;
+  color: #00285a;
 }
 .product-price {
   color: #17d10c;
@@ -327,6 +402,58 @@ body {
   left: 50%;
   transform: translateX(-50%);
   transition: 250ms all ease-in-out;
+}
+.indexBody {
+  background: url("../img/ndp-bg.jpg") center no-repeat;
+  background-size: cover;
+}
+@media only screen and (max-width: 600px) {
+  .indexBody {
+    background-image: none;
+    background-color: #f9f9f9;
+  }
+}
+.indexMain {
+  padding-left: calc(50% - (760px / 2));
+  padding-right: calc(50% - (760px / 2));
+  min-height: 100vh;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+@media only screen and (max-width: 1140px) {
+  .indexMain {
+    padding-left: calc(50% - (90% / 2));
+    padding-right: calc(50% - (90% / 2));
+  }
+}
+@media only screen and (max-width: 600px) {
+  .indexMain {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    -ms-flex-pack: start;
+        justify-content: flex-start;
+  }
+}
+.indexMain .title--big span {
+  font-weight: 600;
+  display: block;
+}
+@media only screen and (max-width: 800px) {
+  .indexMain .title--big span {
+    display: inline;
+  }
+}
+.indexMain p {
+  color: #00285a;
+  font-weight: 500;
 }
 .shopMain {
   padding-left: calc(50% - (90% / 2));

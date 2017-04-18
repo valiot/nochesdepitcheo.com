@@ -1,0 +1,40 @@
+.newsletter
+  text-align center
+  bottom 4rem
+  position absolute
+  
+  +below($mobile)
+    position static
+    margin-top 6rem
+
+  &-inputs
+    display flex
+    overflow hidden
+    border-radius 4px
+    background-color white
+
+.email,
+.button
+  font-size 1rem
+  font-family 'Dosis', sans-serif
+  letter-spacing 2px
+  border 0
+  text-align center
+  
+.email:focus,
+.button:focus
+  outline 0
+  
+.email
+  flex-grow 1
+  
+.button
+  padding .75rem 2rem
+  text-transform uppercase
+  background-color $green
+  color white
+  font-weight 600
+  transition 300ms all ease-in-out
+  
+  &:hover
+      background-color lighten($green, 5)

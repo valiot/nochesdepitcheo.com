@@ -7,6 +7,12 @@
   display flex
   align-items center
   justify-content space-between
+  z-index 10
+  
+  +below($mobile)
+    justify-content center
+    position static
+    margin-top 2rem
   
 .mainHeader-logo
   width 260px
@@ -15,3 +21,4 @@
   & img
     width 100%
     display block
+    

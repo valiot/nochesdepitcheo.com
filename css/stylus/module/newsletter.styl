@@ -1,17 +1,26 @@
 .newsletter
   text-align center
   bottom 4rem
-  position absolute
-  
-  +below($mobile)
-    position static
-    margin-top 6rem
 
   &-inputs
     display flex
     overflow hidden
     border-radius 4px
     background-color white
+
+.newsletter--fixed
+  position absolute
+  
+  +below($mobile)
+    position static
+    margin-top 6rem
+    
+.newsletter--footer
+  wrapped(50%)
+  width 100%
+  padding-top 10rem
+  padding-bottom 10rem
+  background-color $principal
 
 .email,
 .button

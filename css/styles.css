@@ -240,6 +240,13 @@ body {
   margin: 0;
 }
 @import url("https://fonts.googleapis.com/css?family=Dosis");
+.aLink {
+  color: #00285a;
+  transition: 300ms all ease-in-out;
+}
+.aLink:hover {
+  color: #006cf3;
+}
 .ambassador-list {
   display: -ms-flexbox;
   display: flex;
@@ -379,17 +386,22 @@ body {
 }
 .newsletter {
   text-align: center;
-  bottom: 4rem;
 }
 .newsletter-inputs {
+  margin-right: auto;
+  margin-left: auto;
   display: -ms-flexbox;
   display: flex;
   overflow: hidden;
   border-radius: 4px;
   background-color: #fff;
+  max-width: 500px;
 }
 .newsletter--fixed {
   position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 @media only screen and (max-width: 600px) {
   .newsletter--fixed {
@@ -516,7 +528,7 @@ body {
   }
 }
 .indexMain .title--big span {
-  font-weight: 800;
+  font-weight: 600;
   display: block;
 }
 @media only screen and (max-width: 800px) {

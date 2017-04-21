@@ -35,7 +35,11 @@
   
 .btn--action
   position absolute
-  bottom -2.5rem
   left 50%
+  bottom 1.5rem
   transform translateX(-50%)
   transition 250ms all ease-in-out
+  
+  +above($tablet)
+    bottom -3rem
+  

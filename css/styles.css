@@ -185,7 +185,7 @@ template {
 .title {
   font-size: calc(1.5rem + 0.5 * ((100vw - 26.25rem) / 53.75));
   color: #00285a;
-  line-height: 3rem;
+  line-height: 1;
   text-transform: uppercase;
   font-weight: 500;
   margin-top: 0;
@@ -201,7 +201,7 @@ template {
   }
 }
 .title--big {
-  font-size: calc(2.5rem + 1 * ((100vw - 26.25rem) / 53.75));
+  font-size: calc(2.3rem + 1.2000000000000002 * ((100vw - 26.25rem) / 53.75));
 }
 @media screen and (min-width: 1280px) {
   .title--big {
@@ -210,7 +210,7 @@ template {
 }
 @media screen and (max-width: 420px) {
   .title--big {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
   }
 }
 .subtitle {
@@ -239,7 +239,6 @@ body {
   font-size: 16px;
   margin: 0;
 }
-@import url("https://fonts.googleapis.com/css?family=Dosis");
 .aLink {
   color: #00285a;
   transition: 300ms all ease-in-out;
@@ -274,6 +273,28 @@ body {
 .ambassador:nth-child(5n) {
   margin-right: 0;
   margin-left: auto;
+}
+@media only screen and (max-width: 600px) {
+  .ambassador {
+    -ms-flex-positive: 0;
+        flex-grow: 0;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    -ms-flex-preferred-size: calc(99.9% * 1/2 - (16px - 16px * 1/2));
+        flex-basis: calc(99.9% * 1/2 - (16px - 16px * 1/2));
+    width: calc(99.9% * 1/2 - (16px - 16px * 1/2));
+  }
+  .ambassador:nth-child(1n) {
+    margin-right: 16px;
+    margin-left: 0;
+  }
+  .ambassador:last-child {
+    margin-right: 0;
+  }
+  .ambassador:nth-child(2n) {
+    margin-right: 0;
+    margin-left: auto;
+  }
 }
 .ambassador-image {
   margin: 0;
@@ -319,6 +340,14 @@ body {
       justify-content: space-between;
   background-color: #00285a;
 }
+@media only screen and (max-width: 1140px) {
+  .footer {
+    padding-left: calc(50% - (90% / 2));
+    padding-right: calc(50% - (90% / 2));
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
 .social {
   display: -ms-flexbox;
   display: flex;
@@ -359,10 +388,11 @@ body {
 }
 @media only screen and (max-width: 600px) {
   .mainHeader {
+    background-color: #f9f9f9;
     -ms-flex-pack: center;
         justify-content: center;
     position: static;
-    margin-top: 2rem;
+    padding-top: 2rem;
   }
 }
 .mainHeader-logo {
@@ -401,7 +431,11 @@ body {
   position: absolute;
   bottom: 4rem;
   left: 50%;
-  transform: translateX(-50%);
+}
+@media only screen and (min-width: 600px) {
+  .newsletter--fixed {
+    transform: translateX(-50%);
+  }
 }
 @media only screen and (max-width: 600px) {
   .newsletter--fixed {
@@ -416,6 +450,12 @@ body {
   padding-top: 10rem;
   padding-bottom: 10rem;
   background-color: #00285a;
+}
+@media only screen and (max-width: 600px) {
+  .newsletter--footer {
+    padding-left: calc(50% - (90% / 2));
+    padding-right: calc(50% - (90% / 2));
+  }
 }
 .email,
 .button {
@@ -483,10 +523,15 @@ body {
 }
 .btn--action {
   position: absolute;
-  bottom: -2.5rem;
   left: 50%;
+  bottom: 1.5rem;
   transform: translateX(-50%);
   transition: 250ms all ease-in-out;
+}
+@media only screen and (min-width: 800px) {
+  .btn--action {
+    bottom: -3rem;
+  }
 }
 .indexBody {
   background: url("../img/ndp-bg.jpg") center no-repeat;
@@ -552,6 +597,17 @@ body {
   -ms-flex-pack: justify;
       justify-content: space-between;
 }
+@media only screen and (max-width: 600px) {
+  .shopMain {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    min-height: calc(100vh - 80px);
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-pack: center;
+        justify-content: center;
+  }
+}
 .shopMain .content,
 .shopMain .image {
   -ms-flex-positive: 0;
@@ -576,6 +632,32 @@ body {
   margin-right: 0;
   margin-left: auto;
 }
+@media only screen and (max-width: 600px) {
+  .shopMain .content,
+  .shopMain .image {
+    -ms-flex-positive: 0;
+        flex-grow: 0;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    -ms-flex-preferred-size: calc(99.9% * 1);
+        flex-basis: calc(99.9% * 1);
+    width: calc(99.9% * 1);
+  }
+  .shopMain .content:nth-child(1n),
+  .shopMain .image:nth-child(1n) {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .shopMain .content:last-child,
+  .shopMain .image:last-child {
+    margin-right: 0;
+  }
+  .shopMain .content:nth-child(0n),
+  .shopMain .image:nth-child(0n) {
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
 .shopMain .content {
   text-align: center;
 }
@@ -591,6 +673,17 @@ body {
       align-items: center;
   -ms-flex-pack: justify;
       justify-content: space-between;
+}
+@media only screen and (max-width: 600px) {
+  .shopAbout {
+    padding-left: calc(50% - (90% / 2));
+    padding-right: calc(50% - (90% / 2));
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-pack: center;
+        justify-content: center;
+    text-align: center;
+  }
 }
 .shopAbout .content,
 .shopAbout .image {
@@ -616,6 +709,32 @@ body {
   margin-right: 0;
   margin-left: auto;
 }
+@media only screen and (max-width: 600px) {
+  .shopAbout .content,
+  .shopAbout .image {
+    -ms-flex-positive: 0;
+        flex-grow: 0;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    -ms-flex-preferred-size: calc(99.9% * 1);
+        flex-basis: calc(99.9% * 1);
+    width: calc(99.9% * 1);
+  }
+  .shopAbout .content:nth-child(1n),
+  .shopAbout .image:nth-child(1n) {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .shopAbout .content:last-child,
+  .shopAbout .image:last-child {
+    margin-right: 0;
+  }
+  .shopAbout .content:nth-child(0n),
+  .shopAbout .image:nth-child(0n) {
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
 .products {
   padding-left: calc(50% - (1120px / 2));
   padding-right: calc(50% - (1120px / 2));
@@ -628,6 +747,14 @@ body {
       align-items: center;
   -ms-flex-pack: justify;
       justify-content: space-between;
+}
+@media only screen and (max-width: 600px) {
+  .products {
+    padding-left: calc(50% - (90% / 2));
+    padding-right: calc(50% - (90% / 2));
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
 }
 .products .product {
   -ms-flex-positive: 0;
@@ -649,6 +776,29 @@ body {
   margin-right: 0;
   margin-left: auto;
 }
+@media only screen and (max-width: 600px) {
+  .products .product {
+    -ms-flex-positive: 0;
+        flex-grow: 0;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    -ms-flex-preferred-size: calc(99.9% * 1);
+        flex-basis: calc(99.9% * 1);
+    width: calc(99.9% * 1);
+    margin-bottom: 2rem;
+  }
+  .products .product:nth-child(1n) {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .products .product:last-child {
+    margin-right: 0;
+  }
+  .products .product:nth-child(1n) {
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
 .nuevoAmanecer {
   margin-top: 6rem;
   margin-bottom: 6rem;
@@ -658,6 +808,18 @@ body {
   -ms-flex-align: center;
       align-items: center;
   background-color: #f9f9f9;
+}
+@media only screen and (max-width: 600px) {
+  .nuevoAmanecer {
+    padding-left: calc(50% - (90% / 2));
+    padding-right: calc(50% - (90% / 2));
+    padding-top: 6rem;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-pack: center;
+        justify-content: center;
+    text-align: center;
+  }
 }
 .nuevoAmanecer .content,
 .nuevoAmanecer .image {
@@ -683,9 +845,37 @@ body {
   margin-right: 0;
   margin-left: auto;
 }
-.nuevoAmanecer .content {
-  padding-right: 6rem;
-  padding-left: 6rem;
+@media only screen and (max-width: 600px) {
+  .nuevoAmanecer .content,
+  .nuevoAmanecer .image {
+    -ms-flex-positive: 0;
+        flex-grow: 0;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    -ms-flex-preferred-size: calc(99.9% * 1);
+        flex-basis: calc(99.9% * 1);
+    width: calc(99.9% * 1);
+  }
+  .nuevoAmanecer .content:nth-child(1n),
+  .nuevoAmanecer .image:nth-child(1n) {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .nuevoAmanecer .content:last-child,
+  .nuevoAmanecer .image:last-child {
+    margin-right: 0;
+  }
+  .nuevoAmanecer .content:nth-child(0n),
+  .nuevoAmanecer .image:nth-child(0n) {
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .nuevoAmanecer .content {
+    padding-right: 6rem;
+    padding-left: 6rem;
+  }
 }
 .ambassadors {
   padding-left: calc(50% - (1120px / 2));
@@ -694,6 +884,12 @@ body {
   padding-bottom: 6rem;
   min-height: 80vh;
   text-align: center;
+}
+@media only screen and (max-width: 1140px) {
+  .ambassadors {
+    padding-left: calc(50% - (90% / 2));
+    padding-right: calc(50% - (90% / 2));
+  }
 }
 .ambassadors .content {
   max-width: 756px;

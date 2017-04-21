@@ -1,6 +1,6 @@
 .newsletter
   text-align center
-
+  
   &-inputs
     margin-right auto
     margin-left auto
@@ -14,7 +14,9 @@
   position absolute
   bottom 4rem
   left 50%
-  transform translateX(-50%)
+  
+  +above($mobile)
+    transform translateX(-50%)
   
   +below($mobile)
     position static
@@ -26,6 +28,9 @@
   padding-top 10rem
   padding-bottom 10rem
   background-color $principal
+  
+  +below($mobile)
+    wrapped(90%)
 
 .email,
 .button

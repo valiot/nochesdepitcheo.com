@@ -28,7 +28,6 @@
     "gulp-stylus": "^2.5.0",
     "gulp-uglify": "^2.0.0",
     "lost": "^8.0.0",
-    "nib": "^1.1.2",
     "rucksack-css": "^0.9.1",
     "rupture": "^0.6.1"
   }

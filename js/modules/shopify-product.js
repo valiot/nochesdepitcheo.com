@@ -1,32 +1,39 @@
 $(function() {
-  var shopClient = ShopifyBuy.buildClient({
-    accessToken: '70713926e14ee6c0b19f901fe0e30efa',
-    domain: 'noches-de-pitcheo.myshopify.com',
-    appId: '6'
+
+  const tshirtCollectionId = '379094994';
+  const accessToken        = '70713926e14ee6c0b19f901fe0e30efa';
+  const domain             = 'noches-de-pitcheo.myshopify.com';
+  const appId              = '6';
+
+  // Build new ShopifyBuy client.
+  const shopClient = ShopifyBuy.buildClient({ accessToken, domain, appId });
+
+  // Fetch products based on t-shirt collection.
+  shopClient.fetchQueryProducts({ collection_id: tshirtCollectionId }).then((products) => {
+    return products.forEach((product) => {
+      createDOMProductItems(product);
+    });
+  }).catch(() => {
+    console.log('Request Failed');
   });
 
-  var comfyTshirt = "8600847954";
-  var normalTshirt = "9012626642";
-  var longTshirt = "9012631058";
+  // Create DOM Product List based on product Template.
+  function createDOMProductItems(product) {
+    let productDOMTemplate = `
+      <div class="product" id="product-${product.id}">
+        <figure class="product-image">
+          <img src="${product.selectedVariantImage.src}" alt="${product.title}">
+          <a href="${product.selectedVariant.checkoutUrl(1)}" class="btn btn--action">
+            COMPRAR
+          </a>
+        </figure>
+        <div class="product-info">
+          <p class="product-name">${product.title}</p>
+          <p class="product-price">${product.selectedVariant.formattedPrice} MXN</p>
+        </div>
+      </div>
+    `;
 
-  function fetchShopifyProduct(id, div) {
-    shopClient.fetchProduct(id).then(function(product) {
-      var content =
-      "<figure class='product-image'>" +
-        "<img src='" + product.selectedVariantImage.src + "' >" +
-        "<a class='btn btn--action' href='" + product.selectedVariant.checkoutUrl(1) +
-        "'>COMPRAR</a>" +
-      "</figure>" +
-      "<div class='product-info'>" +
-        "<p class='product-name'>" + product.title + "</p>" +
-        "<p class='product-price'>$2OOmx</p>" +
-      "</div>";
-
-      $(div).html(content); 
-    });
+    $('#product-list').append(productDOMTemplate);
   }
-
-  fetchShopifyProduct(comfyTshirt, "#comfyTshirt");
-  fetchShopifyProduct(normalTshirt, "#normalTshirt");
-  fetchShopifyProduct(longTshirt, "#longTshirt");
 });

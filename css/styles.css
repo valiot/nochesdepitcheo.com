@@ -370,6 +370,7 @@ body {
   min-width: inherit;
   width: auto;
   height: auto;
+  background-color: #00285a;
   z-index: 2;
 }
 .btn--cart-tab.js-active {

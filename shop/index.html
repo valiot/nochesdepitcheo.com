@@ -104,7 +104,7 @@
 		</svg>
   </button>
 
-	<!-- nuevo amanecer -->
+  <!-- nuevo amanecer -->
   <section class="nuevoAmanecer" id="nuevoAmanecer">
     <div class="content">
       <h2 class="title">Instituto Nuevo Amanecer</h2>
@@ -260,6 +260,31 @@
       <img src="/img/powered-disruptiveangels.svg" alt="">
     </a>
   </footer>
+
+  <!-- cart item template-->
+  <script id="CartItemTemplate" type="text/template">
+    <div class="cart-item">
+      <div class="cart-item__img"></div>
+      <div class="cart-item__content">
+        <div class="cart-item__content-row">
+          <div class="cart-item__variant-title"></div>
+          <span class="cart-item__title"></span>
+        </div>
+        <div class="cart-item__content-row">
+          <div class="cart-item__quantity-container">
+            <button class="btn--seamless quantity-decrement" type="button">
+              <span>-</span><span class="visually-hidden">Incrementara</span></button>
+            <input class="cart-item__quantity" type="number" min="0" aria-label="Quantity">
+            <button class="btn--seamless quantity-increment" type="button">
+              <span>+</span><span class="visually-hidden">Disminuir</span>
+            </button>
+          </div>
+          <span class="cart-item__price"></span>
+        </div>
+      </div>
+    </div>
+  </script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="http://sdks.shopifycdn.com/js-buy-sdk/v0/latest/shopify-buy.umd.polyfilled.min.js"></script>
   <script src="/js/main.min.js"></script>

@@ -4,18 +4,58 @@
   text-transform uppercase
   transition 300ms all ease-in-out
   color white
+  border 0
   border-radius 4px
   letter-spacing 1px
   font-weight 600
-  
+  cursor pointer
+
+  &--full
+    width 100%
+
   &--principal
     background-color $principal
-    
+
     &:hover
       background-color lighten($principal, 10)
-      
+
   &--action
     background-color $green
-    
+
     &:hover
       background-color lighten($green, 5)
+
+  &--close
+    position absolute
+    right 9px
+    top 8px
+    font-size 35px
+    color #767676
+    border none
+    background transparent
+    transition transform 100ms ease
+    cursor pointer
+
+    &:hover
+      transform scale(1.2)
+      color #767676
+
+// nunca pude hacer que jalara con &. puto stylus. Se comporta bien rara esta parte.
+.btn--cart-tab
+  padding 5px 11px
+  border-radius 3px 0 0 3px
+  position fixed
+  right 0
+  top 50%
+  transform translate(100%, -50%)
+  opacity 0
+  min-width inherit
+  width auto
+  height auto
+  background-color $principal
+  z-index 2
+
+  &.js-active
+    transform translateY(-50%)
+    opacity 1
+

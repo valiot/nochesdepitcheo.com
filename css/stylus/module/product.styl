@@ -1,19 +1,19 @@
 .product
   text-decoration none
-  
-  :hover .btn--action
+
+  &:hover .btn--action
     bottom 1.5rem
-  
-.product-image
+
+.variant-image
   margin 0
   overflow hidden
   border-radius 4px
   position relative
-  
+
   img
     width 100%
     display block
-    
+
 .product-info
   padding-right 1rem
   padding-left 1rem
@@ -21,25 +21,24 @@
   justify-content space-between
   font-weight 700
   text-transform uppercase
-  
-.product-name
+
+.product-title
   color $principal
-  
-.product-price
+
+.variant-price
   color $green
-  
-.product-name
-.product-price
+
+.product-title
+.variant-price
   margin-top 1rem
   margin-bottom 0
-  
+
 .btn--action
   position absolute
   left 50%
   bottom 1.5rem
   transform translateX(-50%)
   transition 250ms all ease-in-out
-  
+
   +above($tablet)
     bottom -3rem
-  

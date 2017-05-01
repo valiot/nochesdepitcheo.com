@@ -18,8 +18,10 @@
   "homepage": "https://github.com/DisruptiveAngels/nochesdepitcheo.com#readme",
   "devDependencies": {
     "autoprefixer": "^6.4.1",
+    "babel-preset-env": "^1.4.0",
     "browser-sync": "^2.16.0",
     "gulp": "gulpjs/gulp#4.0",
+    "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
     "gulp-cssmin": "^0.1.7",
     "gulp-imagemin": "^3.0.3",

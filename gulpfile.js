@@ -7,6 +7,7 @@ var imagemin      = require('gulp-imagemin');
 var rename        = require('gulp-rename');
 var concat        = require('gulp-concat');
 var uglify        = require('gulp-uglify');
+var babel         = require('gulp-babel');
 var rupture       = require('rupture');
 var lost          = require('lost');
 var rucksack      = require('rucksack-css');
@@ -48,11 +49,11 @@ gulp.task('server', function() {
 // Stylus Task - Compiles stylus file
 gulp.task('stylus', function() {
   var stylus_options = {
-    use : [     
+    use : [
         rupture()
     ]
   }
-  
+
   return gulp.src(paths.styles)
     .pipe(stylus(stylus_options))
     .pipe(gulp.dest(paths.css));
@@ -86,6 +87,7 @@ gulp.task ('mincss', function() {
 // Concatjs Task - Concatenates *.js files
 gulp.task ('concatjs', function() {
   return gulp.src(paths.scripts)
+    .pipe(babel())
     .pipe(concat('main.js'))
     .pipe(gulp.dest(paths.js));
 });

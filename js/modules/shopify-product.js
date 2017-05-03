@@ -1,10 +1,8 @@
-'use strict';
-
-$(function () {
-  var tshirtCollectionId = '379094994';
-  var accessToken = '70713926e14ee6c0b19f901fe0e30efa';
-  var domain = 'noches-de-pitcheo.myshopify.com';
-  var appId = '6';
+$(function() {
+  const tshirtCollectionId = '379094994';
+  const accessToken        = '70713926e14ee6c0b19f901fe0e30efa';
+  const domain             = 'noches-de-pitcheo.myshopify.com';
+  const appId              = '6';
 
   var cart;
   var cartLineItemCount;
@@ -13,18 +11,18 @@ $(function () {
 
   /* Build new ShopifyBuy client
   ============================================================ */
-  var shopClient = ShopifyBuy.buildClient({ accessToken: accessToken, domain: domain, appId: appId });
+  const shopClient = ShopifyBuy.buildClient({ accessToken, domain, appId });
 
   /* Fetch or create cart using Browsers LocalStorage
   ============================================================ */
   if (localStorage.getItem('lastCartId')) {
-    shopClient.fetchCart(localStorage.getItem('lastCartId')).then(function (remoteCart) {
+    shopClient.fetchCart(localStorage.getItem('lastCartId')).then((remoteCart) => {
       cart = remoteCart;
       cartLineItemCount = cart.lineItems.length;
       renderCartItems();
     });
   } else {
-    shopClient.createCart().then(function (newCart) {
+    shopClient.createCart().then((newCart) => {
       cart = newCart;
       localStorage.setItem('lastCartId', cart.id);
       cartLineItemCount = 0;
@@ -33,23 +31,23 @@ $(function () {
 
   /* Fetch products based on tshirt collection and init.
   ============================================================ */
-  shopClient.fetchQueryProducts({ collection_id: tshirtCollectionId }).then(function (products) {
+  shopClient.fetchQueryProducts({ collection_id: tshirtCollectionId }).then((products) => {
 
     // Form Hash with product.id as key for easier access.
-    collectionProductsHash = products.reduce(function (map, obj) {
+    collectionProductsHash = products.reduce(function(map, obj) {
       map[obj.id] = obj;
       return map;
     }, {});
 
-    return products.forEach(function (product, i) {
+    return products.forEach((product, i) => {
       createDOMProductItems(product, i);
       generateDOMProductSelector(product);
       attachOnVariantSelectListeners(product);
     });
-  }).then(function () {
+  }).then(() => {
     updateCartTabButton();
     bindEventListeners();
-  }).catch(function (errors) {
+  }).catch((errors) => {
     console.log('failed request');
     console.error(errors);
   });
@@ -57,7 +55,23 @@ $(function () {
   /* Create DOM product list element based on product template.
   ============================================================ */
   function createDOMProductItems(product, i) {
-    var productDOMTemplate = '\n      <div class="product" id="product-' + product.id + '">\n        <figure class="variant-image">\n          <img src="' + product.selectedVariantImage.src + '" alt="' + product.title + '">\n          <button data-product-id="' + product.id + '"\n            class="btn btn--action btn--add-to-cart js-prevent-cart-listener">\n            COMPRAR\n          </button>\n        </figure>\n\n        <div class="variant-selector"></div>\n        <div class="product-info">\n          <p class="product-title">' + product.title + '</p>\n          <p class="variant-price">' + product.selectedVariant.formattedPrice + '</p>\n        </div>\n      </div>\n    ';
+    let productDOMTemplate = `
+      <div class="product" id="product-${product.id}">
+        <figure class="variant-image">
+          <img src="${product.selectedVariantImage.src}" alt="${product.title}">
+          <button data-product-id="${product.id}"
+            class="btn btn--action btn--add-to-cart js-prevent-cart-listener">
+            COMPRAR
+          </button>
+        </figure>
+
+        <div class="variant-selector"></div>
+        <div class="product-info">
+          <p class="product-title">${product.title}</p>
+          <p class="variant-price">${product.selectedVariant.formattedPrice}</p>
+        </div>
+      </div>
+    `;
 
     $('#product-list').append(productDOMTemplate);
   }
@@ -65,12 +79,14 @@ $(function () {
   /* Generate product variant element selectors.
   ============================================================ */
   function generateSelectors(product) {
-    var elements = product.options.map(function (option) {
-      var optionsHtml = option.values.map(function (value) {
-        return '<option value="' + value + '">' + value + '</option>';
+    let elements = product.options.map((option) => {
+      let optionsHtml = option.values.map((value) => {
+        return `<option value="${value}">${value}</option>`;
       });
 
-      return '\n        <select class="select" name="' + option.name + '">' + optionsHtml + '</select>\n      ';
+      return `
+        <select class="select" name="${option.name}">${optionsHtml}</select>
+      `;
     });
 
     return elements;
@@ -79,32 +95,31 @@ $(function () {
   /* Insert product variant selector into DOM.
   ============================================================ */
   function generateDOMProductSelector(product) {
-    $('#product-' + product.id + ' .variant-selector').html(generateSelectors(product));
+    $(`#product-${product.id} .variant-selector`).html(generateSelectors(product));
   }
 
   /* Bind Event Listeners
   ============================================================ */
   function bindEventListeners() {
-    var _this = this;
-
     /* cart close button listener */
     $('.cart .btn--close').on('click', closeCart);
 
     /* click away listener to close cart */
-    $(document).on('click', function (event) {
-      if (!$(event.target).closest('.cart').length && !$(event.target).closest('.js-prevent-cart-listener').length) {
-        closeCart();
-      }
+    $(document).on('click', function(event) {
+      if ((!$(event.target).closest('.cart').length) &&
+          (!$(event.target).closest('.js-prevent-cart-listener').length)) {
+            closeCart();
+          }
     });
 
     /* escape key handler */
-    var ESCAPE_KEYCODE = 27;
+    let ESCAPE_KEYCODE = 27;
 
-    $(document).on('keydown', function (event) {
+    $(document).on('keydown', (event) => {
       if (event.which === ESCAPE_KEYCODE) {
         if (previousFocusItem) {
           $(previousFocusItem).focus();
-          previousFocusItem = '';
+          previousFocusItem = ''
         }
 
         closeCart();
@@ -112,7 +127,7 @@ $(function () {
     });
 
     /* checkout button click listener */
-    $('[data-js="btn-cart-checkout"]').on('click', function () {
+    $('[data-js="btn-cart-checkout"]').on('click', function() {
       window.open(cart.checkoutUrl, '_self');
     });
 
@@ -120,17 +135,17 @@ $(function () {
     $('.btn--add-to-cart').on('click', buyButtonClickHandler);
 
     /* increment quantity click listener */
-    $('.cart').on('click', '.quantity-increment', function () {
-      var productId = $(this).data('product-id');
-      var variantId = $(this).data('variant-id');
+    $('.cart').on('click', '.quantity-increment', function() {
+      let productId = $(this).data('product-id');
+      let variantId = $(this).data('variant-id');
 
       incrementQuantity(productId, variantId);
     });
 
     /* decrement quantity click listener */
-    $('.cart').on('click', '.quantity-decrement', function () {
-      var productId = $(this).data('product-id');
-      var variantId = $(this).data('variant-id');
+    $('.cart').on('click', '.quantity-decrement', function() {
+      let productId = $(this).data('product-id');
+      let variantId = $(this).data('variant-id');
 
       decrementQuantity(productId, variantId);
     });
@@ -139,8 +154,8 @@ $(function () {
     $('.cart').on('keyup', '.cart-item__quantity', debounce(fieldQuantityHandler, 250));
 
     /* cart tab click listener */
-    $('.btn--cart-tab').click(function () {
-      setPreviousFocusItem(_this);
+    $('.btn--cart-tab').click(() => {
+      setPreviousFocusItem(this);
       openCart();
     });
   }
@@ -150,11 +165,11 @@ $(function () {
   function buyButtonClickHandler(event) {
     event.preventDefault();
 
-    var attributeProductId = $(this).data('product-id');
-    var product = collectionProductsHash[attributeProductId];
-    var id = product.selectedVariant.id;
-    var cartLineItem = findCartItemByVariantId(id);
-    var quantity = cartLineItem ? cartLineItem.quantity + 1 : 1;
+    let attributeProductId = $(this).data('product-id');
+    let product            = collectionProductsHash[attributeProductId];
+    let id                 = product.selectedVariant.id;
+    let cartLineItem       = findCartItemByVariantId(id);
+    let quantity           = cartLineItem ? cartLineItem.quantity + 1 : 1;
 
     addOrUpdateVariant(product.selectedVariant, quantity);
     setPreviousFocusItem(event.target);
@@ -165,14 +180,14 @@ $(function () {
   /* Variant option change event handler.
   ============================================================ */
   function attachOnVariantSelectListeners(product) {
-    var productElement = '#product-' + product.id;
+    let productElement = `#product-${product.id}`;
 
-    $(productElement + ' .variant-selector').on('change', 'select', function (event) {
-      var $element = $(event.target);
-      var name = $element.attr('name');
-      var value = $element.val();
+    $(`${productElement} .variant-selector`).on('change', 'select', (event) => {
+      let $element = $(event.target);
+      let name     = $element.attr('name');
+      let value    = $element.val();
 
-      product.options.filter(function (option) {
+      product.options.filter((option) => {
         return option.name === name;
       })[0].selected = value;
 
@@ -184,33 +199,33 @@ $(function () {
   /* Update product image based on selected variant
   ============================================================ */
   function updateVariantImage(product) {
-    var image = product.selectedVariantImage;
-    var src = image ? image.src : ShopifyBuy.NO_IMAGE_URI;
+    let image = product.selectedVariantImage;
+    let src = (image) ? image.src : ShopifyBuy.NO_IMAGE_URI;
 
-    $('#product-' + product.id + ' .variant-image').attr('src', src);
+    $(`#product-${product.id} .variant-image`).attr('src', src);
   }
 
   /* Update product variant price based on selected variant
   ============================================================ */
   function updateVariantPrice(product) {
-    var variant = product.selectedVariant;
+    let variant = product.selectedVariant;
 
-    $('#product-' + product.id + ' .variant-price').text('$' + variant.price);
+    $(`#product-${product.id} .variant-price`).text('$' + variant.price);
   }
 
   /* Update product variant quantity in cart
   ============================================================ */
   function updateQuantity(fn, productId, variantId) {
-    var product = collectionProductsHash[productId];
+    let product = collectionProductsHash[productId];
 
-    var variant = product.variants.filter(function (variant) {
-      return variant.id === variantId;
+    let variant = product.variants.filter((variant) => {
+      return (variant.id === variantId);
     })[0];
 
-    var cartLineItem = findCartItemByVariantId(variant.id);
+    let cartLineItem = findCartItemByVariantId(variant.id);
 
     if (cartLineItem) {
-      var quantity = fn(cartLineItem.quantity);
+      let quantity = fn(cartLineItem.quantity);
       updateVariantInCart(cartLineItem, quantity);
     }
   }
@@ -218,12 +233,12 @@ $(function () {
   /* Update product variant quantity in cart through input field
   ============================================================ */
   function fieldQuantityHandler(event) {
-    var productId = parseInt($(this).closest('.cart-item').data('product-id'), 10);
-    var variantId = parseInt($(this).closest('.cart-item').data('variant-id'), 10);
-    var product = collectionProductsHash[productId];
+    let productId = parseInt($(this).closest('.cart-item').data('product-id'), 10);
+    let variantId = parseInt($(this).closest('.cart-item').data('variant-id'), 10);
+    let product   = collectionProductsHash[productId];
 
-    var variant = product.variants.filter(function (variant) {
-      return variant.id === variantId;
+    let variant = product.variants.filter((variant) => {
+      return (variant.id === variantId);
     })[0];
 
     var cartLineItem = findCartItemByVariantId(variant.id);
@@ -237,19 +252,21 @@ $(function () {
   /* Update details for item already in cart. Remove if necessary
   ============================================================ */
   function updateVariantInCart(cartLineItem, quantity) {
-    var variantId = cartLineItem.variant_id;
-    var cartLength = cart.lineItems.length;
+    let variantId  = cartLineItem.variant_id;
+    let cartLength = cart.lineItems.length;
 
-    cart.updateLineItem(cartLineItem.id, quantity).then(function (updatedCart) {
-      var $cartItem = $('.cart').find('.cart-item[data-variant-id="' + variantId + '"]');
+    cart.updateLineItem(cartLineItem.id, quantity).then((updatedCart) => {
+      let $cartItem = $('.cart').find('.cart-item[data-variant-id="' + variantId + '"]');
 
       if (updatedCart.lineItems.length >= cartLength) {
         $cartItem.find('.cart-item__quantity').val(cartLineItem.quantity);
         $cartItem.find('.cart-item__price').text(formatAsMoney(cartLineItem.line_price));
       } else {
-        $cartItem.addClass('js-hidden').bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function () {
-          $cartItem.remove();
-        });
+        $cartItem
+          .addClass('js-hidden')
+          .bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', () => {
+            $cartItem.remove();
+          });
       }
 
       updateCartTabButton();
@@ -258,7 +275,7 @@ $(function () {
       if (updatedCart.lineItems.length < 1) {
         closeCart();
       }
-    }).catch(function (errors) {
+    }).catch((errors) => {
       console.log('failed');
       console.error(errors);
     });
@@ -286,7 +303,7 @@ $(function () {
   /* Decrease product cart quantity amount by 1
   ============================================================ */
   function decrementQuantity(productId, variantId) {
-    updateQuantity(function (quantity) {
+    updateQuantity((quantity) => {
       return quantity - 1;
     }, productId, variantId);
   }
@@ -294,7 +311,7 @@ $(function () {
   /* Increase product cart quantity amount by 1
   ============================================================ */
   function incrementQuantity(productId, variantId) {
-    updateQuantity(function (quantity) {
+    updateQuantity((quantity) => {
       return quantity + 1;
     }, productId, variantId);
   }
@@ -302,8 +319,8 @@ $(function () {
   /* Find Cart Line Item By Variant Id
   ============================================================ */
   function findCartItemByVariantId(variantId) {
-    return cart.lineItems.filter(function (item) {
-      return item.variant_id === variantId;
+    return cart.lineItems.filter((item) => {
+      return (item.variant_id === variantId);
     })[0];
   }
 
@@ -312,7 +329,7 @@ $(function () {
   function addOrUpdateVariant(variant, quantity) {
     openCart();
 
-    var cartLineItem = findCartItemByVariantId(variant.id);
+    let cartLineItem = findCartItemByVariantId(variant.id);
 
     if (cartLineItem) {
       updateVariantInCart(cartLineItem, quantity);
@@ -328,20 +345,21 @@ $(function () {
   function addVariantToCart(variant, quantity) {
     openCart();
 
-    cart.createLineItemsFromVariants({ variant: variant, quantity: quantity }).then(function () {
-      var cartItem = cart.lineItems.filter(function (item) {
-        return item.variant_id === variant.id;
+    cart.createLineItemsFromVariants({ variant: variant, quantity: quantity }).then(() => {
+      let cartItem = cart.lineItems.filter((item) => {
+        return (item.variant_id === variant.id);
       })[0];
 
-      var $cartItem = renderCartItem(cartItem);
-      var $cartItemContainer = $('.cart-item-container');
+      let $cartItem          = renderCartItem(cartItem);
+      let $cartItemContainer = $('.cart-item-container');
 
       $cartItemContainer.append($cartItem);
 
-      setTimeout(function () {
+      setTimeout(() => {
         $cartItemContainer.find('.js-hidden').removeClass('js-hidden');
-      }, 0);
-    }).catch(function (errors) {
+      }, 0)
+
+    }).catch((errors) => {
       console.log('failed');
       console.error(errors);
     });
@@ -353,11 +371,11 @@ $(function () {
   /* Return required markup for single item rendering
   ============================================================ */
   function renderCartItem(lineItem) {
-    var lineItemEmptyTemplate = $('#CartItemTemplate').html();
-    var $lineItemTemplate = $(lineItemEmptyTemplate);
-    var itemImage = lineItem.image.src;
-    var variantId = lineItem.variant_id;
-    var productId = lineItem.product_id;
+    let lineItemEmptyTemplate = $('#CartItemTemplate').html();
+    let $lineItemTemplate = $(lineItemEmptyTemplate);
+    let itemImage = lineItem.image.src;
+    let variantId = lineItem.variant_id;
+    let productId = lineItem.product_id;
 
     $lineItemTemplate.attr('data-product-id', productId);
     $lineItemTemplate.attr('data-variant-id', variantId);
@@ -384,19 +402,19 @@ $(function () {
   /* Render the line items currently in the cart
   ============================================================ */
   function renderCartItems() {
-    var $cartItemContainer = $('.cart-item-container');
+    let $cartItemContainer = $('.cart-item-container');
 
     $cartItemContainer.empty();
 
     //let lineItemEmptyTemplate = $('#CartItemTemplate').html();
 
-    var $cartLineItems = cart.lineItems.map(function (lineItem, index) {
+    let $cartLineItems = cart.lineItems.map((lineItem, index) => {
       return renderCartItem(lineItem);
     });
 
     $cartItemContainer.append($cartLineItems);
 
-    setTimeout(function () {
+    setTimeout(() => {
       $cartItemContainer.find('.js-hidden').removeClass('js-hidden');
     }, 0);
 
@@ -405,16 +423,25 @@ $(function () {
 
   /* Format amount as currency
   ============================================================ */
-  function formatAsMoney(amount, currency, thousandSeparator, decimalSeparator, localeDecimalSeparator) {
-    currency = currency || '$';
-    thousandSeparator = thousandSeparator || ',';
-    decimalSeparator = decimalSeparator || '.';
-    localeDecimalSeparator = localeDecimalSeparator || '.';
+  function formatAsMoney(
+    amount,
+    currency,
+    thousandSeparator,
+    decimalSeparator,
+    localeDecimalSeparator) {
+      currency = currency || '$';
+      thousandSeparator = thousandSeparator || ',';
+      decimalSeparator = decimalSeparator || '.';
+      localeDecimalSeparator = localeDecimalSeparator || '.';
 
-    var regex = new RegExp('(\\d)(?=(\\d{3})+\\.)', 'g');
+      let regex = new RegExp('(\\d)(?=(\\d{3})+\\.)', 'g');
 
-    return currency + parseFloat(amount, 10).toFixed(2).replace(localeDecimalSeparator, decimalSeparator).replace(regex, '$1' + thousandSeparator).toString();
-  }
+      return currency + parseFloat(amount, 10)
+        .toFixed(2)
+        .replace(localeDecimalSeparator, decimalSeparator)
+        .replace(regex, '$1' + thousandSeparator)
+        .toString();
+    }
 
   /* Update cart tab button
   ============================================================ */
@@ -437,24 +464,24 @@ $(function () {
   /* Debounce taken from _.js (http://underscorejs.org/#debounce)
   ============================================================ */
   function debounce(func, wait, immediate) {
-    var timeout = void 0;
+    let timeout;
 
-    return function () {
-      var context = this;
-      var args = arguments;
+    return function() {
+      let context = this;
+      let args = arguments;
 
-      var later = function later() {
+      let later = function() {
         timeout = null;
 
         if (!immediate) func.apply(context, args);
       };
 
-      var callNow = immediate && !timeout;
+      let callNow = immediate && !timeout;
 
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
 
       if (callNow) func.apply(context, args);
-    };
+    }
   }
 });

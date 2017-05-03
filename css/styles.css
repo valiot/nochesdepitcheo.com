@@ -350,7 +350,7 @@ body {
   top: 8px;
   font-size: 35px;
   color: #767676;
-  border: none;
+  border: 0;
   background: transparent;
   transition: transform 100ms ease;
   cursor: pointer;
@@ -374,7 +374,7 @@ body {
   z-index: 2;
 }
 .btn--cart-tab.js-active {
-  transform: translateY(-50%);
+  transform: translateY(50%);
   opacity: 1;
 }
 .cart {

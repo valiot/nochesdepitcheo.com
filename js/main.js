@@ -57,7 +57,7 @@ $(function () {
   /* Create DOM product list element based on product template.
   ============================================================ */
   function createDOMProductItems(product, i) {
-    var productDOMTemplate = '\n      <div class="product" id="product-' + product.id + '">\n        <figure class="variant-image">\n          <img src="' + product.selectedVariantImage.src + '" alt="' + product.title + '">\n          <button data-product-id="' + product.id + '"\n            class="btn btn--action btn--add-to-cart js-prevent-cart-listener">\n            COMPRAR\n          </button>\n        </figure>\n\n        <div class="product-info">\n          <p class="product-title">' + product.title + '</p>\n          <p class="variant-price">' + product.selectedVariant.formattedPrice + '</p>\n          <div class="variant-selector"></div>\n        </div>\n      </div>\n    ';
+    var productDOMTemplate = '\n      <div class="product" id="product-' + product.id + '">\n        <figure class="variant-image">\n          <img src="' + product.selectedVariantImage.src + '" alt="' + product.title + '">\n          <button data-product-id="' + product.id + '"\n            class="btn btn--action btn--add-to-cart js-prevent-cart-listener">\n            COMPRAR\n          </button>\n        </figure>\n\n        <div class="variant-selector"></div>\n        <div class="product-info">\n          <p class="product-title">' + product.title + '</p>\n          <p class="variant-price">' + product.selectedVariant.formattedPrice + '</p>\n        </div>\n      </div>\n    ';
 
     $('#product-list').append(productDOMTemplate);
   }

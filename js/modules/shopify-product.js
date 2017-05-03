@@ -65,10 +65,10 @@ $(function() {
           </button>
         </figure>
 
+        <div class="variant-selector"></div>
         <div class="product-info">
           <p class="product-title">${product.title}</p>
           <p class="variant-price">${product.selectedVariant.formattedPrice}</p>
-          <div class="variant-selector"></div>
         </div>
       </div>
     `;

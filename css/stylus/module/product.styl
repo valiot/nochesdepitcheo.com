@@ -1,13 +1,23 @@
 .product
-  text-decoration none
 
-  &:hover .btn--action
+  &:hover .btn--buy
     bottom 1.5rem
 
-.variant-image
+.product-title
+.product-price
+  font-size 1.5rem
+  font-weight 800
+  text-transform uppercase
+
+.product-title
+  text-align center
+  margin-bottom 1rem
+  color $principal
+
+.product-image
   margin 0
   overflow hidden
-  border-radius 4px
+  border-radius 5px
   position relative
 
   img
@@ -15,25 +25,40 @@
     display block
 
 .product-info
-  padding-right 1rem
-  padding-left 1rem
-  display flex
-  justify-content space-between
-  font-weight 700
-  text-transform uppercase
-
-.product-title
-  color $principal
-
-.variant-price
-  color $green
-
-.product-title
-.variant-price
   margin-top 1rem
-  margin-bottom 0
+  margin-bottom 1rem
+  display flex
+  align-items center
+  justify-content space-around
+  
+.product-price
+  color $green
+  
+.product-variantSelector
+  position relative
+  
+  &::after
+    content url(/img/arrow-down.svg)
+    position absolute
+    right 1rem
+    top 50%
+    transform translateY(-50%)
+    z-index -5
+  
+  .select
+    padding .5rem 2rem .5rem 1rem
+    appearance none
+    font-family inherit
+    font-size 1rem
+    font-weight 800
+    background-color transparent
+    border-radius 0
+    border 2px solid $principal
+    
+    &:focus
+      outline 0
 
-.btn--action
+.btn--buy
   position absolute
   left 50%
   bottom 1.5rem

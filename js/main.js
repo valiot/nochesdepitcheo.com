@@ -57,7 +57,7 @@ $(function () {
   /* Create DOM product list element based on product template.
   ============================================================ */
   function createDOMProductItems(product, i) {
-    var productDOMTemplate = '\n      <div class="product" id="product-' + product.id + '">\n        <figure class="variant-image">\n          <img src="' + product.selectedVariantImage.src + '" alt="' + product.title + '">\n          <button data-product-id="' + product.id + '"\n            class="btn btn--action btn--add-to-cart js-prevent-cart-listener">\n            COMPRAR\n          </button>\n        </figure>\n\n        <div class="variant-selector"></div>\n        <div class="product-info">\n          <p class="product-title">' + product.title + '</p>\n          <p class="variant-price">' + product.selectedVariant.formattedPrice + '</p>\n        </div>\n      </div>\n    ';
+    var productDOMTemplate = '\n      <div class="product" id="product-' + product.id + '">\n        <div class="product-title">' + product.title + '</div>\n\n        <figure class="product-image">\n          <img src="' + product.selectedVariantImage.src + '" alt="' + product.title + '">\n          <button data-product-id="' + product.id + '"\n            class="btn btn--buy js-prevent-cart-listener">\n            COMPRAR\n          </button>\n        </figure>\n\n        <div class="product-info">\n          <div class="product-variantSelector"></div>\n          <span class="product-price">' + product.selectedVariant.formattedPrice + '</span>\n        </div>\n      </div>\n    ';
 
     $('#product-list').append(productDOMTemplate);
   }
@@ -79,7 +79,7 @@ $(function () {
   /* Insert product variant selector into DOM.
   ============================================================ */
   function generateDOMProductSelector(product) {
-    $('#product-' + product.id + ' .variant-selector').html(generateSelectors(product));
+    $('#product-' + product.id + ' .product-variantSelector').html(generateSelectors(product));
   }
 
   /* Bind Event Listeners
@@ -117,7 +117,7 @@ $(function () {
     });
 
     /* buy button click listener */
-    $('.btn--add-to-cart').on('click', buyButtonClickHandler);
+    $('.btn--buy').on('click', buyButtonClickHandler);
 
     /* increment quantity click listener */
     $('.cart').on('click', '.quantity-increment', function () {
@@ -167,7 +167,7 @@ $(function () {
   function attachOnVariantSelectListeners(product) {
     var productElement = '#product-' + product.id;
 
-    $(productElement + ' .variant-selector').on('change', 'select', function (event) {
+    $(productElement + ' .product-variantSelector').on('change', 'select', function (event) {
       var $element = $(event.target);
       var name = $element.attr('name');
       var value = $element.val();
@@ -187,7 +187,7 @@ $(function () {
     var image = product.selectedVariantImage;
     var src = image ? image.src : ShopifyBuy.NO_IMAGE_URI;
 
-    $('#product-' + product.id + ' .variant-image').attr('src', src);
+    $('#product-' + product.id + ' .product-image').attr('src', src);
   }
 
   /* Update product variant price based on selected variant
@@ -195,7 +195,7 @@ $(function () {
   function updateVariantPrice(product) {
     var variant = product.selectedVariant;
 
-    $('#product-' + product.id + ' .variant-price').text('$' + variant.price);
+    $('#product-' + product.id + ' .product-price').text('$' + variant.price);
   }
 
   /* Update product variant quantity in cart

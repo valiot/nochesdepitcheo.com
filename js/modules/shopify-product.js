@@ -57,18 +57,19 @@ $(function() {
   function createDOMProductItems(product, i) {
     let productDOMTemplate = `
       <div class="product" id="product-${product.id}">
-        <figure class="variant-image">
+        <div class="product-title">${product.title}</div>
+
+        <figure class="product-image">
           <img src="${product.selectedVariantImage.src}" alt="${product.title}">
           <button data-product-id="${product.id}"
-            class="btn btn--action btn--add-to-cart js-prevent-cart-listener">
+            class="btn btn--buy js-prevent-cart-listener">
             COMPRAR
           </button>
         </figure>
 
-        <div class="variant-selector"></div>
         <div class="product-info">
-          <p class="product-title">${product.title}</p>
-          <p class="variant-price">${product.selectedVariant.formattedPrice}</p>
+          <div class="product-variantSelector"></div>
+          <span class="product-price">${product.selectedVariant.formattedPrice}</span>
         </div>
       </div>
     `;
@@ -95,7 +96,7 @@ $(function() {
   /* Insert product variant selector into DOM.
   ============================================================ */
   function generateDOMProductSelector(product) {
-    $(`#product-${product.id} .variant-selector`).html(generateSelectors(product));
+    $(`#product-${product.id} .product-variantSelector`).html(generateSelectors(product));
   }
 
   /* Bind Event Listeners
@@ -132,7 +133,7 @@ $(function() {
     });
 
     /* buy button click listener */
-    $('.btn--add-to-cart').on('click', buyButtonClickHandler);
+    $('.btn--buy').on('click', buyButtonClickHandler);
 
     /* increment quantity click listener */
     $('.cart').on('click', '.quantity-increment', function() {
@@ -182,7 +183,7 @@ $(function() {
   function attachOnVariantSelectListeners(product) {
     let productElement = `#product-${product.id}`;
 
-    $(`${productElement} .variant-selector`).on('change', 'select', (event) => {
+    $(`${productElement} .product-variantSelector`).on('change', 'select', (event) => {
       let $element = $(event.target);
       let name     = $element.attr('name');
       let value    = $element.val();
@@ -202,7 +203,7 @@ $(function() {
     let image = product.selectedVariantImage;
     let src = (image) ? image.src : ShopifyBuy.NO_IMAGE_URI;
 
-    $(`#product-${product.id} .variant-image`).attr('src', src);
+    $(`#product-${product.id} .product-image`).attr('src', src);
   }
 
   /* Update product variant price based on selected variant
@@ -210,7 +211,7 @@ $(function() {
   function updateVariantPrice(product) {
     let variant = product.selectedVariant;
 
-    $(`#product-${product.id} .variant-price`).text('$' + variant.price);
+    $(`#product-${product.id} .product-price`).text('$' + variant.price);
   }
 
   /* Update product variant quantity in cart

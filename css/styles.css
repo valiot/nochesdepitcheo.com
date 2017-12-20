@@ -769,48 +769,41 @@ img {
 .product-inside {
   background-color: #fff;
   width: 900px;
-  display: -ms-flexbox;
-  display: flex;
-  margin-left: 20%;
-  margin-top: 6rem;
-  margin-bottom: 6rem;
   border-radius: 5px;
   box-shadow: 0 10px 30px 0 rgba(0,0,0,0.2);
-  position: absolute;
+  display: -ms-flexbox;
+  display: flex;
 }
 .product-images {
   overflow: hidden;
   width: 50%;
+  margin: 0;
+  -ms-flex: 0 0 auto;
+      flex: 0 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .images-option {
   display: block;
   float: left;
   width: 33.33%;
-  max-height: 140px;
 }
-.images-option img {
+img {
   width: 100%;
 }
-.images-option: first-child {
+.images-option:first-child {
   width: 100%;
-  max-height: 60%;
 }
 .product-details {
-  padding: 6rem;
   display: -ms-flexbox;
   display: flex;
+  padding: 4rem;
   -ms-flex-direction: column;
       flex-direction: column;
   -ms-flex-pack: center;
       justify-content: center;
-}
-.product-titleInside {
-  font-family: 'Patua One';
-  font-size: 2.5rem;
-  color: #00285a;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  padding-bottom: 1rem;
 }
 .requirements {
   float: left;
@@ -821,8 +814,8 @@ img {
 .product-variantSelector .select {
   padding: 0.5rem 2rem 0.5rem 1rem;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   font-family: inherit;
   font-size: 1rem;
   font-weight: 800;
@@ -831,8 +824,6 @@ img {
   background-color: transparent;
   border-radius: 0;
   border: 2px solid #00285a;
-  margin-right: 2rem;
-  margin-top: 2rem;
 }
 .product {
   text-align: center;
@@ -864,7 +855,6 @@ img {
   display: flex;
   -ms-flex-direction: row;
       flex-direction: row;
-  padding-top: 1rem;
 }
 .productVariants--preview {
   -ms-flex-pack: center;

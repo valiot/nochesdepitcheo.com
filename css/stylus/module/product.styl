@@ -1,69 +1,50 @@
-.product
-
-  &:hover .btn--buy
-    bottom 1.5rem
-
-.product-title
-.product-price
-  font-size 1.5rem
-  font-weight 800
-  text-transform uppercase
-
-.product-title
+.product 
   text-align center
-  margin-bottom 1rem
-  color $principal
-
-.product-image
-  margin 0
-  overflow hidden
-  border-radius 5px
-  position relative
-
-  img
-    width 100%
-    display block
-
-.product-info
-  margin-top 1rem
-  margin-bottom 1rem
-  display flex
-  align-items center
-  justify-content space-around
-  
-.product-price
-  color $green
-  
-.product-variantSelector
-  position relative
-  
-  &::after
-    content url(/img/arrow-down.svg)
-    position absolute
-    right 1rem
-    top 50%
-    transform translateY(-50%)
-    z-index -5
-  
-  .select
-    padding .5rem 2rem .5rem 1rem
-    appearance none
-    font-family inherit
-    font-size 1rem
-    font-weight 800
-    background-color transparent
-    border-radius 0
-    border 2px solid $principal
+  float left
+  padding 2rem
     
-    &:focus
-      outline 0
+.product-title 
+  padding-bottom 2rem
+  text-transform uppercase
+  letter-spacing 0.1rem
+  color $principal
+  font-weight 600
+  font-size 1.5rem
 
-.btn--buy
-  position absolute
-  left 50%
-  bottom 1.5rem
-  transform translateX(-50%)
-  transition 250ms all ease-in-out
+.product-info 
+  background-color white
+  padding 2rem
+  box-shadow 0 10px 30px 0 rgba(0,0,0,0.20)
+  border-radius 5px
+  display flex
+  flex-direction column
+  align-items center
+  
+.productVariants 
+  display flex
+  flex-direction row
+  padding-top 1rem
 
-  +above($tablet)
-    bottom -3rem
+.productVariants--preview 
+  justify-content center
+  
+.variant1 
+  width 20px
+  height 20px
+  margin-right 2rem
+  background-color #00285A
+  border-radius 50%
+  border 2px solid white
+
+.variant1--active 
+  box-shadow 0 2px 4px 0 rgba(0,0,0,0.50)
+
+.variant2 
+  width 20px
+  height 20px
+  background-color $green
+  border-radius 50%
+  border 2px solid white
+
+.product: last-child 
+  margin-right 0

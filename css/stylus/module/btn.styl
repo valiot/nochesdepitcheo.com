@@ -11,52 +11,29 @@
   letter-spacing 1px
   font-weight 600
   cursor pointer
-
-  &--full
-    width 100%
-
+  
   &--principal
     background-color $principal
 
-    &:hover
+    &hover
       background-color lighten($principal, 10)
 
-  &--buy
-    background-color $green
+.btn--buy 
+  background-color $green
+  max-width 150px
+  
+.btn--preview 
+  transform translate(0%, 120%)
 
-    &:hover
-      background-color lighten($green, 5)
-
-  &--close
-    position absolute
-    right 9px
-    top 8px
-    font-size 35px
-    color #767676
-    border 0
-    background transparent
-    transition transform 100ms ease
-    cursor pointer
-
-    &:hover
-      transform scale(1.2)
-      color #767676
-
-  &--cart-tab
-    padding 5px 11px
-    border-radius 3px 0 0 3px
-    position fixed
-    right 0
-    top 50%
-    transform translate(100%, -50%)
-    opacity 0
-    min-width inherit
-    width auto
-    height auto
-    background-color $principal
-    z-index 2
-
-    &.js-active
-      transform translateY(50%)
-      opacity 1
-
+.btn-close 
+  border-radius 50%
+  background-color $green
+  position absolute
+  right 0
+  width 30px
+  height 30px
+  margin-right 2rem
+  margin-top 2rem
+  text-align center
+  color white
+  font-weight 600

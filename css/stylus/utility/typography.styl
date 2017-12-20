@@ -5,9 +5,31 @@
   text-transform uppercase
   font-weight 500
   margin-top 0
+  letter-spacing 0.1rem
+  position relative
 
   &--big
     font-size responsive 2.3rem 3.5rem
+    
+  &--new 
+    color white
+    
+.title--vertical
+  writing-mode vertical-lr
+  transform rotate(180deg) translateY(50%)
+  color white
+  font-weight 600
+  letter-spacing 0.1rem
+  text-transform uppercase
+  position absolute
+  top 50%
+    
+.title--bold
+  font-size 3rem
+  font-family 'Patua One'
+  color $red
+  text-transform uppercase
+  letter-spacing 0.2rem
 
 .subtitle
   margin-top 0
@@ -22,3 +44,9 @@ p
   font-size 22px
   color $black
   line-height 32px
+  
+.tag 
+  color $black
+  font-size 1rem
+  font-weight 600
+  letter-spacing 0.1rem

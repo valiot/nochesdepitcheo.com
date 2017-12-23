@@ -182,15 +182,138 @@ template {
 [hidden] {
   display: none;
 }
+@media all {
+  html.with-featherlight {
+/* disable global scrolling when featherlights are visible */
+    overflow: hidden;
+  }
+  .featherlight {
+    display: none;
+/* dimensions: spanning the background from edge to edge */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2147483647; /* z-index needs to be >= elements on the site. */
+/* position: centering content */
+    text-align: center;
+/* insures that the ::before pseudo element doesn't force wrap with fixed width content; */
+    white-space: nowrap;
+/* styling */
+    cursor: pointer;
+    background: #333;
+/* IE8 "hack" for nested featherlights */
+    background: rgba(0,0,0,0);
+  }
+  .featherlight:last-of-type {
+    background: rgba(0,0,0,0.8);
+  }
+  .featherlight:before {
+/* position: trick to center content vertically */
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+  .featherlight .featherlight-content {
+/* make content container for positioned elements (close button) */
+    position: relative;
+/* position: centering vertical and horizontal */
+    text-align: left;
+    vertical-align: middle;
+    display: inline-block;
+/* dimensions: cut off images */
+    overflow: auto;
+    padding: 25px 25px 0;
+    border-bottom: 25px solid transparent;
+/* dimensions: handling large content */
+    margin-left: 5%;
+    margin-right: 5%;
+    max-height: 95%;
+/* styling */
+    background: #fff;
+    cursor: auto;
+/* reset white-space wrapping */
+    white-space: normal;
+  }
+  .featherlight .featherlight-inner {
+/* make sure its visible */
+    display: block;
+  }
+  .featherlight script.featherlight-inner,
+  .featherlight link.featherlight-inner,
+  .featherlight style.featherlight-inner {
+    display: none;
+  }
+  .featherlight .featherlight-close-icon {
+/* position: centering vertical and horizontal */
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+/* dimensions: 25px x 25px */
+    line-height: 25px;
+    width: 25px;
+/* styling */
+    cursor: pointer;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: #fff; /* Set the background in case it overlaps the content */
+    background: rgba(255,255,255,0.3);
+    color: #000;
+    border: none;
+    padding: 0;
+  }
+  .featherlight .featherlight-close-icon::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+  .featherlight .featherlight-image {
+/* styling */
+    width: 100%;
+  }
+  .featherlight-iframe .featherlight-content {
+/* removed the border for image croping since iframe is edge to edge */
+    border-bottom: 0;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+  }
+  .featherlight iframe {
+/* styling */
+    border: none;
+  }
+  .featherlight * {
+/* See https://github.com/noelboss/featherlight/issues/42 */
+    box-sizing: border-box;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .featherlight .featherlight-content {
+/* dimensions: maximize lightbox with for small screens */
+    margin-left: 0;
+    margin-right: 0;
+    max-height: 98%;
+    padding: 10px 10px 0;
+    border-bottom: 10px solid transparent;
+  }
+}
+@media print {
+  html.with-featherlight > * > :not(.featherlight) {
+    display: none;
+  }
+}
 .title {
   font-size: calc(1.5rem + 0.5 * ((100vw - 26.25rem) / 53.75));
   color: #00285a;
   line-height: 1;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
   margin-top: 0;
   letter-spacing: 0.1rem;
   position: relative;
+  margin-bottom: 0;
 }
 @media screen and (min-width: 1280px) {
   .title {
@@ -215,9 +338,6 @@ template {
     font-size: 2.3rem;
   }
 }
-.title--new {
-  color: #fff;
-}
 .title--vertical {
   -webkit-writing-mode: vertical-lr;
       -ms-writing-mode: tb-lr;
@@ -232,16 +352,15 @@ template {
 }
 .title--bold {
   font-size: 3rem;
-  font-family: 'Patua One';
   color: #a01432;
   text-transform: uppercase;
-  letter-spacing: 0.2rem;
 }
 .subtitle {
   margin-top: 0;
   text-transform: uppercase;
-  font-size: 2rem;
-  color: #a01432;
+  font-size: 1.5;
+  color: #00285a;
+  font-weight: 700;
 }
 .subtitle--white {
   color: #fff;
@@ -253,9 +372,10 @@ p {
 }
 .tag {
   color: #474d54;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.1rem;
+  text-transform: uppercase;
 }
 .visually-hidden {
   border: 0;
@@ -588,6 +708,38 @@ input[type=number]-webkit-outer-spin-button {
   font-size: 16px;
   color: #000;
 }
+.checkboxRadio {
+  margin-top: 1rem;
+}
+.checkboxRadio-1 {
+  margin-right: 2rem;
+  background-color: #00285a;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.checkboxRadio--active {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+}
+.checkboxRadio-2 {
+  background-color: #17d10c;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.featherlight .featherlight-inner {
+  display: -ms-flexbox;
+  display: flex;
+}
+.featherlight .featherlight-content {
+  padding: 0;
+  border-bottom: 0;
+}
+.featherlight .featherlight-close-icon {
+  background-color: #17d10c;
+  border-radius: 100%;
+  top: 1rem;
+  right: 1rem;
+  color: #fff;
+}
 .footer {
   padding-left: calc(50% - (1120px / 2));
   padding-right: calc(50% - (1120px / 2));
@@ -630,7 +782,8 @@ input[type=number]-webkit-outer-spin-button {
   float: left;
   width: 20%;
 }
-img {
+.instagram-image img {
+  display: block;
   width: 100%;
 }
 .instagram-image:first-child {
@@ -766,65 +919,6 @@ img {
 .button:hover {
   background-color: #1ae90d;
 }
-.product-inside {
-  background-color: #fff;
-  width: 900px;
-  border-radius: 5px;
-  box-shadow: 0 10px 30px 0 rgba(0,0,0,0.2);
-  display: -ms-flexbox;
-  display: flex;
-}
-.product-images {
-  overflow: hidden;
-  width: 50%;
-  margin: 0;
-  -ms-flex: 0 0 auto;
-      flex: 0 0 auto;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-.images-option {
-  display: block;
-  float: left;
-  width: 33.33%;
-}
-img {
-  width: 100%;
-}
-.images-option:first-child {
-  width: 100%;
-}
-.product-details {
-  display: -ms-flexbox;
-  display: flex;
-  padding: 4rem;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: center;
-      justify-content: center;
-}
-.requirements {
-  float: left;
-}
-.product-variantSelector {
-  position: relative;
-}
-.product-variantSelector .select {
-  padding: 0.5rem 2rem 0.5rem 1rem;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 800;
-  color: #00285a;
-  text-transform: uppercase;
-  background-color: transparent;
-  border-radius: 0;
-  border: 2px solid #00285a;
-}
 .product {
   text-align: center;
   float: left;
@@ -849,6 +943,7 @@ img {
       flex-direction: column;
   -ms-flex-align: center;
       align-items: center;
+  margin-top: 1rem;
 }
 .productVariants {
   display: -ms-flexbox;
@@ -860,26 +955,131 @@ img {
   -ms-flex-pack: center;
       justify-content: center;
 }
-.variant1 {
-  width: 20px;
-  height: 20px;
-  margin-right: 2rem;
-  background-color: #00285a;
-  border-radius: 50%;
-  border: 2px solid #fff;
-}
-.variant1--active {
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
-}
-.variant2 {
-  width: 20px;
-  height: 20px;
-  background-color: #17d10c;
-  border-radius: 50%;
-  border: 2px solid #fff;
-}
 .product: last-child {
   margin-right: 0;
+}
+.productInside {
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 900px;
+}
+.productInside-images {
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-preferred-size: calc(99.9% * 1/2);
+      flex-basis: calc(99.9% * 1/2);
+  max-width: calc(99.9% * 1/2);
+  width: calc(99.9% * 1/2);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.productInside-images:nth-child(1n) {
+  margin-right: 0;
+  margin-left: 0;
+}
+.productInside-images:last-child {
+  margin-right: 0;
+}
+.productInside-details {
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-preferred-size: calc(99.9% * 1/2);
+      flex-basis: calc(99.9% * 1/2);
+  max-width: calc(99.9% * 1/2);
+  width: calc(99.9% * 1/2);
+  display: -ms-flexbox;
+  display: flex;
+  padding: 4rem;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+.productInside-details:nth-child(1n) {
+  margin-right: 0;
+  margin-left: 0;
+}
+.productInside-details:last-child {
+  margin-right: 0;
+}
+.productInside-img {
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-preferred-size: calc(99.9% * 1/3);
+      flex-basis: calc(99.9% * 1/3);
+  max-width: calc(99.9% * 1/3);
+  width: calc(99.9% * 1/3);
+}
+.productInside-img:nth-child(1n) {
+  margin-right: 0;
+  margin-left: 0;
+}
+.productInside-img:last-child {
+  margin-right: 0;
+}
+.productInside-img:first-child {
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-preferred-size: calc(99.9% * 1/1);
+      flex-basis: calc(99.9% * 1/1);
+  max-width: calc(99.9% * 1/1);
+  width: calc(99.9% * 1/1);
+}
+.productInside-img:first-child:nth-child(1n) {
+  margin-right: 0;
+  margin-left: 0;
+}
+.productInside-img:first-child:last-child {
+  margin-right: 0;
+}
+.productInside-img img {
+  width: 100%;
+  display: block;
+}
+.productInside-inputs {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: baseline;
+      align-items: baseline;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.productInside-colors {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.productInside-select {
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #00285a;
+  text-transform: uppercase;
+  background-color: transparent;
+  border-radius: 0;
+  border: 2px solid #00285a;
+}
+.productInside-buy {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  margin-top: 3rem;
 }
 .indexBody {
   background: url("../img/ndp-bg.jpg") center no-repeat;
@@ -941,7 +1141,6 @@ img {
   background: url("../img/ndp-main3.jpg") no-repeat center;
   background-size: cover;
   height: 100vh;
-  background-color: #ff6347;
 }
 .mainShop-image2 {
   background: url("../img/ndp-main2.jpg") no-repeat center;

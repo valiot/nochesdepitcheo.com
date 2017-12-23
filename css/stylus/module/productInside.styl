@@ -1,0 +1,51 @@
+.productInside
+  display flex
+  max-width 900px
+
+.productInside-images
+  lost-column 1/2 0 0
+  display flex
+  flex-wrap wrap
+  
+.productInside-details
+  lost-column 1/2 0 0
+  display flex
+  padding 4rem
+  flex-direction column
+  justify-content center
+  
+.productInside-img
+  lost-column 1/3 0 0
+  
+  &:first-child
+    lost-column 1/1 0 0
+
+  img
+    width 100%
+    display block
+    
+.productInside-inputs
+  display flex
+  align-items baseline
+  justify-content space-between
+  
+.productInside-colors
+  display flex 
+  flex-direction column
+  
+.productInside-select
+  padding .5rem 2rem .5rem 1rem
+  appearance none
+  font-family inherit
+  font-size 1rem
+  font-weight 800
+  color $principal
+  text-transform uppercase
+  background-color transparent
+  border-radius 0
+  border 2px solid $principal
+  
+.productInside-buy
+  display flex
+  justify-content space-between
+  margin-top 3rem

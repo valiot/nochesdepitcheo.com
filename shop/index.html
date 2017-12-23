@@ -12,11 +12,10 @@
   <meta property="og:image"       content="http://www.nochesdepitcheo.com/img/ndp-fb-shop.jpg" />
   <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
   <link rel="stylesheet" href="/css/styles.min.css">
-  <link href="//cdn.rawgit.com/noelboss/featherlight/1.7.12/release/featherlight.min.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
   <header class="mainHeader mainHeader--shop is-scrolled">
-    <a href="#0">
+    <a href="/">
       <img class="logo" src="/img/ndp-logo.svg" alt="logo">
     </a>
     <a  class="carrito" href="#0">
@@ -39,32 +38,43 @@
     <h2 class="title title--vertical">New arrivals</h2>
 
     <div class="product">
-      <h2 class="title title--new">Growth tee</h2>
+      <h2 class="subtitle subtitle--white">Growth tee</h2>
       <div class="product-info">
         <figure class="product-image">
           <img src="/img/growth-blue.png" alt="image-tshirt">
         </figure>
-        <p class="tag">COLORES DISPONIBLES</p>
-        <div class="productVariants productVariants--preview">
-          <a class="variant1 variant1--active" href="#0"></a>
-          <a class="variant2"href="#0"></a>
+
+        <div class="productInside-inputs">
+          <div class="productInside-colors"> 
+            <label class="tag" for="choice-color">Colores disponibles</label>
+            <div class="checkboxRadio">
+              <input class="checkboxRadio-1 checkboxRadio--active" type="radio" id="choice-color1" name="checkbox-color1" value="colors">
+              <input class="checkboxRadio-2" type="radio" id="choice-color2" name="checkbox-color2" value="colors">
+            </div>
+          </div>
         </div>
-        <a class="btn btn--buy btn--preview" href="#" data-featherlight="/products.html .product-inside">comprar</a>
+
+        <a class="btn btn--buy btn--preview" href="#" data-featherlight="products.html #product1">comprar</a>
       </div>
     </div>
 
     <div class="product">
-      <h2 class="title title--new">Coffee tee</h2>
+      <h2 class="subtitle subtitle--white">Coffee tee</h2>
       <div class="product-info">
         <figure class="product-image">
           <img src="/img/coffee-blue.png" alt="image-tshirt">
         </figure>
-        <p class="tag">COLORES DISPONIBLES</p>
-        <div class="productVariants productVariants--preview">
-          <a class="variant1 variant1--active" href="#0"></a>
-          <a class="variant2"href="#0"></a>
+        <div class="productInside-inputs">
+          <div class="productInside-colors"> 
+            <label class="tag" for="choice-color">Colores disponibles</label>
+            <div class="checkboxRadio">
+              <input class="checkboxRadio-1 checkboxRadio--active" type="radio" id="choice-color1" name="checkbox-color1" value="colors">
+              <input class="checkboxRadio-2" type="radio" id="choice-color2" name="checkbox-color2" value="colors">
+            </div>
+          </div>
         </div>
-        <button class="btn btn--buy btn--preview">comprar</button>
+
+        <a class="btn btn--buy btn--preview" href="#" data-featherlight="products.html #product1">comprar</a>
       </div>
     </div>
   </section>
@@ -72,22 +82,24 @@
   <section class="productContainer">
 
     <div class="product">
-      <h2 class="title">Comfy tee</h2>
+      <h2 class="subtitle">Comfy tee</h2>
       <div class="product-info">
         <figure class="product-image">
           <img src="/img/comfy-gray.png" alt="image-tshirt">
         </figure>
-        <button class="btn btn--buy btn--preview">comprar</button>
+
+        <a class="btn btn--buy btn--preview" href="#" data-featherlight="products.html #product1">comprar</a>
       </div>
     </div>
 
     <div class="product">
-      <h2 class="title">Pitcher manga 3/4</h2>
+      <h2 class="subtitle">Pitcher manga 3/4</h2>
       <div class="product-info">
         <figure class="product-image">
           <img src="/img/baseball-tshirt.png" alt="image-tshirt">
         </figure>
-        <button class="btn btn--buy btn--preview">comprar</button>
+        
+        <a class="btn btn--buy btn--preview" href="#" data-featherlight="products.html #product1">comprar</a>
       </div>
   </section>
 
@@ -142,5 +154,5 @@
 </body>
 
 <script src="//code.jquery.com/jquery-latest.js"></script>
-<script src="//cdn.rawgit.com/noelboss/featherlight/1.7.12/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/main.min.js"></script>
 </html>

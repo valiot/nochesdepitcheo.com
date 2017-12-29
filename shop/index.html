@@ -18,9 +18,14 @@
     <a href="/">
       <img class="logo" src="/img/ndp-logo.svg" alt="logo">
     </a>
-    <a  class="carrito" href="#0">
-      <img src="/img/car-shop.svg" alt="shop">
-    </a>
+
+    <nav class="mainNav">
+      <a href="/" class="mainNav-link" target="_blank">Inicio</a>
+      <a href="https://www.facebook.com/pg/nochesdepitcheo/events/" class="mainNav-link" target="_blank">Eventos</a>
+      <a  class="carrito" href="#0">
+        <img src="/img/car-shop.svg" alt="shop">
+      </a>
+    </nav>
   </header>
 
   <main class="mainShop">
@@ -30,6 +35,7 @@
   </main>
 
   <section class="welcome">
+    <h3 class="tag tag--slogan">tech - entrepreneurs - beers</h3>
     <h1 class="title title--bold">Feel entrepreneur</h1>
     <p class="welcome-intro">“Here’s to the crazy ones. The rebels. The troublemakers. The ones who see things differently. While some may see them as the crazy ones, we see genius. Because the people who are crazy enough to think they can change the world, are the ones who do.”</p>
   </section>
@@ -40,25 +46,36 @@
     <div class="product">
       <h2 class="subtitle subtitle--white">Growth tee</h2>
       <div class="product-info">
-        <figure class="product-image">
-          <img src="/img/growth-blue.png" alt="image-tshirt">
-        </figure>
+        <div class="slider">
+          <div class="mySlider">
+            <ul>
+              <li class="mySlider-slide slide-1">
+                <figure class="product-image">
+                  <img src="/img/growth-blue.png" alt="image-tshirt">
+                </figure>
+              </li>
 
-        <div class="productInside-inputs">
-          <div class="productInside-colors"> 
-            <label class="tag" for="choice-color">Colores disponibles</label>
-            <div class="checkboxRadio">
-              <input class="checkboxRadio-1 checkboxRadio--active" type="radio" id="choice-color1" name="checkbox-color1" value="colors">
-              <input class="checkboxRadio-2" type="radio" id="choice-color2" name="checkbox-color2" value="colors">
+              <li class="mySlider-slide slide-2">
+                <figure class="product-image">
+                  <img src="/img/growth-green.png" alt="image-tshirt">
+                </figure>
+              </li>
+            </ul>
+          </div>
+
+          <div class="productInside-inputs">
+            <div class="productInside-colors"> 
+              <label class="tag" for="choice-color">Colores disponibles</label>
             </div>
           </div>
-        </div>
 
-        <a class="btn btn--buy btn--preview" href="#" data-featherlight="products.html #product1">comprar</a>
+          <a class="btn btn--buy btn--preview" href="#" data-featherlight="products.html #product1">comprar</a>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="product">
+    <!-- div class="product">
       <h2 class="subtitle subtitle--white">Coffee tee</h2>
       <div class="product-info">
         <figure class="product-image">
@@ -67,19 +84,19 @@
         <div class="productInside-inputs">
           <div class="productInside-colors"> 
             <label class="tag" for="choice-color">Colores disponibles</label>
-            <div class="checkboxRadio">
-              <input class="checkboxRadio-1 checkboxRadio--active" type="radio" id="choice-color1" name="checkbox-color1" value="colors">
-              <input class="checkboxRadio-2" type="radio" id="choice-color2" name="checkbox-color2" value="colors">
-            </div>
+            <form class="checkboxRadio" action="">
+              <input class="checkboxRadio-1 checkboxRadio--active" type="radio" id="choice-color1" name="checkbox-color" value="color1">
+              <input class="checkboxRadio-2" type="radio" id="choice-color2" name="checkbox-color" value="color2">
+            </form>
           </div>
         </div>
 
         <a class="btn btn--buy btn--preview" href="#" data-featherlight="products.html #product1">comprar</a>
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <section class="productContainer">
+<!--   <section class="productContainer">
 
     <div class="product">
       <h2 class="subtitle">Comfy tee</h2>
@@ -101,9 +118,10 @@
         
         <a class="btn btn--buy btn--preview" href="#" data-featherlight="products.html #product1">comprar</a>
       </div>
-  </section>
+    </div>
+  </section> -->
 
-  <section>
+  <!-- <section>
     <div class="follow">
       <h3 class="title">Síguenos y sé parte de la comunidad</h3>
       <p class="tag">@nochesdepitcheo</p>
@@ -150,9 +168,9 @@
     <a href="https://disruptiveangels.com/">
       <img src="/img/da-logo.svg" alt="">
     </a>
-  </footer>
-</body>
+  </footer> -->
 
-<script src="//code.jquery.com/jquery-latest.js"></script>
-<script src="/js/main.min.js"></script>
+  <script src="//code.jquery.com/jquery-latest.js"></script>
+  <script src="/js/main.min.js"></script>
+</body>
 </html>

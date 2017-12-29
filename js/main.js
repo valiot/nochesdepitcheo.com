@@ -642,463 +642,110 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		Featherlight._onReady();
 	});
 })(jQuery);
-'use strict';
+"use strict";
 
-$(function () {
-  var tshirtCollectionId = '379094994';
-  var accessToken = '70713926e14ee6c0b19f901fe0e30efa';
-  var domain = 'noches-de-pitcheo.myshopify.com';
-  var appId = '6';
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-  var cart;
-  var cartLineItemCount;
-  var previousFocusItem;
-  var collectionProductsHash;
-
-  /* Build new ShopifyBuy client
-  ============================================================ */
-  var shopClient = ShopifyBuy.buildClient({ accessToken: accessToken, domain: domain, appId: appId });
-
-  /* Fetch or create cart using Browsers LocalStorage
-  ============================================================ */
-  if (localStorage.getItem('lastCartId')) {
-    shopClient.fetchCart(localStorage.getItem('lastCartId')).then(function (remoteCart) {
-      cart = remoteCart;
-      cartLineItemCount = cart.lineItems.length;
-      renderCartItems();
-    });
-  } else {
-    shopClient.createCart().then(function (newCart) {
-      cart = newCart;
-      localStorage.setItem('lastCartId', cart.id);
-      cartLineItemCount = 0;
-    });
-  }
-
-  /* Fetch products based on tshirt collection and init.
-  ============================================================ */
-  shopClient.fetchQueryProducts({ collection_id: tshirtCollectionId }).then(function (products) {
-
-    // Form Hash with product.id as key for easier access.
-    collectionProductsHash = products.reduce(function (map, obj) {
-      map[obj.id] = obj;
-      return map;
-    }, {});
-
-    return products.forEach(function (product, i) {
-      createDOMProductItems(product, i);
-      generateDOMProductSelector(product);
-      attachOnVariantSelectListeners(product);
-    });
-  }).then(function () {
-    updateCartTabButton();
-    bindEventListeners();
-  }).catch(function (errors) {
-    console.log('failed request');
-    console.error(errors);
-  });
-
-  /* Create DOM product list element based on product template.
-  ============================================================ */
-  function createDOMProductItems(product, i) {
-    var productDOMTemplate = '\n      <div class="product" id="product-' + product.id + '">\n        <div class="product-title">' + product.title + '</div>\n\n        <figure class="product-image">\n          <img src="' + product.selectedVariantImage.src + '" alt="' + product.title + '">\n          <button data-product-id="' + product.id + '"\n            class="btn btn--buy js-prevent-cart-listener">\n            COMPRAR\n          </button>\n        </figure>\n\n        <div class="product-info">\n          <div class="product-variantSelector"></div>\n          <span class="product-price">' + product.selectedVariant.formattedPrice + '</span>\n        </div>\n      </div>\n    ';
-
-    $('#product-list').append(productDOMTemplate);
-  }
-
-  /* Generate product variant element selectors.
-  ============================================================ */
-  function generateSelectors(product) {
-    var elements = product.options.map(function (option) {
-      var optionsHtml = option.values.map(function (value) {
-        return '<option value="' + value + '">' + value + '</option>';
+!function (t) {
+  "object" == (typeof module === "undefined" ? "undefined" : _typeof(module)) && "object" == _typeof(module.exports) ? t(require("jquery")) : "function" == typeof define && define.amd ? define([], t(window.jQuery)) : t(window.jQuery);
+}(function (t) {
+  if (!t) return console.warn("Unslider needs jQuery");t.Unslider = function (n, e) {
+    var i = this;return i._ = "unslider", i.defaults = { autoplay: !1, delay: 3e3, speed: 750, easing: "swing", keys: { prev: 37, next: 39 }, nav: !0, arrows: { prev: '<a class="' + i._ + '-arrow prev">Prev</a>', next: '<a class="' + i._ + '-arrow next">Next</a>' }, animation: "horizontal", selectors: { container: "ul:first", slides: "li" }, animateHeight: !1, activeClass: i._ + "-active", swipe: !0, swipeThreshold: .2 }, i.$context = n, i.options = {}, i.$parent = null, i.$container = null, i.$slides = null, i.$nav = null, i.$arrows = [], i.total = 0, i.current = 0, i.prefix = i._ + "-", i.eventSuffix = "." + i.prefix + ~~(2e3 * Math.random()), i.interval = [], i.init = function (n) {
+      return i.options = t.extend({}, i.defaults, n), i.$container = i.$context.find(i.options.selectors.container).addClass(i.prefix + "wrap"), i.$slides = i.$container.children(i.options.selectors.slides), i.setup(), t.each(["nav", "arrows", "keys", "infinite"], function (n, e) {
+        i.options[e] && i["init" + t._ucfirst(e)]();
+      }), jQuery.event.special.swipe && i.options.swipe && i.initSwipe(), i.options.autoplay && i.start(), i.calculateSlides(), i.$context.trigger(i._ + ".ready"), i.animate(i.options.index || i.current, "init");
+    }, i.setup = function () {
+      i.$context.addClass(i.prefix + i.options.animation).wrap('<div class="' + i._ + '" />'), i.$parent = i.$context.parent("." + i._), "static" === i.$context.css("position") && i.$context.css("position", "relative"), i.$context.css("overflow", "hidden");
+    }, i.calculateSlides = function () {
+      if (i.$slides = i.$container.children(i.options.selectors.slides), i.total = i.$slides.length, "fade" !== i.options.animation) {
+        var t = "width";"vertical" === i.options.animation && (t = "height"), i.$container.css(t, 100 * i.total + "%").addClass(i.prefix + "carousel"), i.$slides.css(t, 100 / i.total + "%");
+      }
+    }, i.start = function () {
+      return i.interval.push(setTimeout(function () {
+        i.next();
+      }, i.options.delay)), i;
+    }, i.stop = function () {
+      for (var t; t = i.interval.pop();) {
+        clearTimeout(t);
+      }return i;
+    }, i.initNav = function () {
+      var n = t('<nav class="' + i.prefix + 'nav"><ol /></nav>');i.$slides.each(function (e) {
+        var o = this.getAttribute("data-nav") || e + 1;t.isFunction(i.options.nav) && (o = i.options.nav.call(i.$slides.eq(e), e, o)), n.children("ol").append('<li data-slide="' + e + '">' + o + "</li>");
+      }), i.$nav = n.insertAfter(i.$context), i.$nav.find("li").on("click" + i.eventSuffix, function () {
+        var n = t(this).addClass(i.options.activeClass);n.siblings().removeClass(i.options.activeClass), i.animate(n.attr("data-slide"));
       });
-
-      return '\n        <select class="select" name="' + option.name + '">' + optionsHtml + '</select>\n      ';
-    });
-
-    return elements;
-  }
-
-  /* Insert product variant selector into DOM.
-  ============================================================ */
-  function generateDOMProductSelector(product) {
-    $('#product-' + product.id + ' .product-variantSelector').html(generateSelectors(product));
-  }
-
-  /* Bind Event Listeners
-  ============================================================ */
-  function bindEventListeners() {
-    var _this = this;
-
-    /* cart close button listener */
-    $('.cart .btn--close').on('click', closeCart);
-
-    /* click away listener to close cart */
-    $(document).on('click', function (event) {
-      if (!$(event.target).closest('.cart').length && !$(event.target).closest('.js-prevent-cart-listener').length) {
-        closeCart();
-      }
-    });
-
-    /* escape key handler */
-    var ESCAPE_KEYCODE = 27;
-
-    $(document).on('keydown', function (event) {
-      if (event.which === ESCAPE_KEYCODE) {
-        if (previousFocusItem) {
-          $(previousFocusItem).focus();
-          previousFocusItem = '';
-        }
-
-        closeCart();
-      }
-    });
-
-    /* checkout button click listener */
-    $('[data-js="btn-cart-checkout"]').on('click', function () {
-      window.open(cart.checkoutUrl, '_self');
-    });
-
-    /* buy button click listener */
-    $('.btn--buy').on('click', buyButtonClickHandler);
-
-    /* increment quantity click listener */
-    $('.cart').on('click', '.quantity-increment', function () {
-      var productId = $(this).data('product-id');
-      var variantId = $(this).data('variant-id');
-
-      incrementQuantity(productId, variantId);
-    });
-
-    /* decrement quantity click listener */
-    $('.cart').on('click', '.quantity-decrement', function () {
-      var productId = $(this).data('product-id');
-      var variantId = $(this).data('variant-id');
-
-      decrementQuantity(productId, variantId);
-    });
-
-    /* update quantity field listener */
-    $('.cart').on('keyup', '.cart-item__quantity', debounce(fieldQuantityHandler, 250));
-
-    /* cart tab click listener */
-    $('.btn--cart-tab').click(function () {
-      setPreviousFocusItem(_this);
-      openCart();
-    });
-  }
-
-  /* Attach and control listeners onto buy button
-  ============================================================ */
-  function buyButtonClickHandler(event) {
-    event.preventDefault();
-
-    var attributeProductId = $(this).data('product-id');
-    var product = collectionProductsHash[attributeProductId];
-    var id = product.selectedVariant.id;
-    var cartLineItem = findCartItemByVariantId(id);
-    var quantity = cartLineItem ? cartLineItem.quantity + 1 : 1;
-
-    addOrUpdateVariant(product.selectedVariant, quantity);
-    setPreviousFocusItem(event.target);
-
-    $('#checkout').focus();
-  }
-
-  /* Variant option change event handler.
-  ============================================================ */
-  function attachOnVariantSelectListeners(product) {
-    var productElement = '#product-' + product.id;
-
-    $(productElement + ' .product-variantSelector').on('change', 'select', function (event) {
-      var $element = $(event.target);
-      var name = $element.attr('name');
-      var value = $element.val();
-
-      product.options.filter(function (option) {
-        return option.name === name;
-      })[0].selected = value;
-
-      updateVariantImage(product);
-      updateVariantPrice(product);
-    });
-  }
-
-  /* Update product image based on selected variant
-  ============================================================ */
-  function updateVariantImage(product) {
-    var image = product.selectedVariantImage;
-    var src = image ? image.src : ShopifyBuy.NO_IMAGE_URI;
-
-    $('#product-' + product.id + ' .product-image').attr('src', src);
-  }
-
-  /* Update product variant price based on selected variant
-  ============================================================ */
-  function updateVariantPrice(product) {
-    var variant = product.selectedVariant;
-
-    $('#product-' + product.id + ' .product-price').text('$' + variant.price);
-  }
-
-  /* Update product variant quantity in cart
-  ============================================================ */
-  function updateQuantity(fn, productId, variantId) {
-    var product = collectionProductsHash[productId];
-
-    var variant = product.variants.filter(function (variant) {
-      return variant.id === variantId;
-    })[0];
-
-    var cartLineItem = findCartItemByVariantId(variant.id);
-
-    if (cartLineItem) {
-      var quantity = fn(cartLineItem.quantity);
-      updateVariantInCart(cartLineItem, quantity);
-    }
-  }
-
-  /* Update product variant quantity in cart through input field
-  ============================================================ */
-  function fieldQuantityHandler(event) {
-    var productId = parseInt($(this).closest('.cart-item').data('product-id'), 10);
-    var variantId = parseInt($(this).closest('.cart-item').data('variant-id'), 10);
-    var product = collectionProductsHash[productId];
-
-    var variant = product.variants.filter(function (variant) {
-      return variant.id === variantId;
-    })[0];
-
-    var cartLineItem = findCartItemByVariantId(variant.id);
-    var quantity = event.target.value;
-
-    if (cartLineItem) {
-      updateVariantInCart(cartLineItem, quantity);
-    }
-  }
-
-  /* Update details for item already in cart. Remove if necessary
-  ============================================================ */
-  function updateVariantInCart(cartLineItem, quantity) {
-    var variantId = cartLineItem.variant_id;
-    var cartLength = cart.lineItems.length;
-
-    cart.updateLineItem(cartLineItem.id, quantity).then(function (updatedCart) {
-      var $cartItem = $('.cart').find('.cart-item[data-variant-id="' + variantId + '"]');
-
-      if (updatedCart.lineItems.length >= cartLength) {
-        $cartItem.find('.cart-item__quantity').val(cartLineItem.quantity);
-        $cartItem.find('.cart-item__price').text(formatAsMoney(cartLineItem.line_price));
-      } else {
-        $cartItem.addClass('js-hidden').bind('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function () {
-          $cartItem.remove();
+    }, i.initArrows = function () {
+      !0 === i.options.arrows && (i.options.arrows = i.defaults.arrows), t.each(i.options.arrows, function (n, e) {
+        i.$arrows.push(t(e).insertAfter(i.$context).on("click" + i.eventSuffix, i[n]));
+      });
+    }, i.initKeys = function () {
+      !0 === i.options.keys && (i.options.keys = i.defaults.keys), t(document).on("keyup" + i.eventSuffix, function (n) {
+        t.each(i.options.keys, function (e, o) {
+          n.which === o && t.isFunction(i[e]) && i[e].call(i);
         });
+      });
+    }, i.initSwipe = function () {
+      var t = i.$slides.width();"fade" !== i.options.animation && i.$container.on({ movestart: function movestart(t) {
+          if (t.distX > t.distY && t.distX < -t.distY || t.distX < t.distY && t.distX > -t.distY) return !!t.preventDefault();i.$container.css("position", "relative");
+        }, move: function move(n) {
+          i.$container.css("left", -100 * i.current + 100 * n.distX / t + "%");
+        }, moveend: function moveend(n) {
+          Math.abs(n.distX) / t > i.options.swipeThreshold ? i[n.distX < 0 ? "next" : "prev"]() : i.$container.animate({ left: -100 * i.current + "%" }, i.options.speed / 2);
+        } });
+    }, i.initInfinite = function () {
+      var n = ["first", "last"];t.each(n, function (t, e) {
+        i.$slides.push.apply(i.$slides, i.$slides.filter(':not(".' + i._ + '-clone")')[e]().clone().addClass(i._ + "-clone")["insert" + (0 === t ? "After" : "Before")](i.$slides[n[~~!t]]()));
+      });
+    }, i.destroyArrows = function () {
+      t.each(i.$arrows, function (t, n) {
+        n.remove();
+      });
+    }, i.destroySwipe = function () {
+      i.$container.off("movestart move moveend");
+    }, i.destroyKeys = function () {
+      t(document).off("keyup" + i.eventSuffix);
+    }, i.setIndex = function (t) {
+      return t < 0 && (t = i.total - 1), i.current = Math.min(Math.max(0, t), i.total - 1), i.options.nav && i.$nav.find('[data-slide="' + i.current + '"]')._active(i.options.activeClass), i.$slides.eq(i.current)._active(i.options.activeClass), i;
+    }, i.animate = function (n, e) {
+      if ("first" === n && (n = 0), "last" === n && (n = i.total), isNaN(n)) return i;i.options.autoplay && i.stop().start(), i.setIndex(n), i.$context.trigger(i._ + ".change", [n, i.$slides.eq(n)]);var o = "animate" + t._ucfirst(i.options.animation);return t.isFunction(i[o]) && i[o](i.current, e), i;
+    }, i.next = function () {
+      var t = i.current + 1;return t >= i.total && (t = i.options.noloop && !i.options.infinite ? i.total - 1 : 0), i.animate(t, "next");
+    }, i.prev = function () {
+      var t = i.current - 1;return t < 0 && (t = i.options.noloop && !i.options.infinite ? 0 : i.total - 1), i.animate(t, "prev");
+    }, i.animateHorizontal = function (t) {
+      var n = "left";return "rtl" === i.$context.attr("dir") && (n = "right"), i.options.infinite && i.$container.css("margin-" + n, "-100%"), i.slide(n, t);
+    }, i.animateVertical = function (t) {
+      return i.options.animateHeight = !0, i.options.infinite && i.$container.css("margin-top", -i.$slides.outerHeight()), i.slide("top", t);
+    }, i.slide = function (t, n) {
+      if (i.animateHeight(n), i.options.infinite) {
+        var e;n === i.total - 1 && (e = i.total - 3, n = -1), n === i.total - 2 && (e = 0, n = i.total - 2), "number" == typeof e && (i.setIndex(e), i.$context.on(i._ + ".moved", function () {
+          i.current === e && i.$container.css(t, -100 * e + "%").off(i._ + ".moved");
+        }));
+      }var o = {};return o[t] = -100 * n + "%", i._move(i.$container, o);
+    }, i.animateFade = function (t) {
+      i.animateHeight(t);var n = i.$slides.eq(t).addClass(i.options.activeClass);i._move(n.siblings().removeClass(i.options.activeClass), { opacity: 0 }), i._move(n, { opacity: 1 }, !1);
+    }, i.animateHeight = function (t) {
+      i.options.animateHeight && i._move(i.$context, { height: i.$slides.eq(t).outerHeight() }, !1);
+    }, i._move = function (t, n, e, o) {
+      return !1 !== e && (e = function e() {
+        i.$context.trigger(i._ + ".moved");
+      }), t._move(n, o || i.options.speed, i.options.easing, e);
+    }, i.init(e);
+  }, t.fn._active = function (t) {
+    return this.addClass(t).siblings().removeClass(t);
+  }, t._ucfirst = function (t) {
+    return (t + "").toLowerCase().replace(/^./, function (t) {
+      return t.toUpperCase();
+    });
+  }, t.fn._move = function () {
+    return this.stop(!0, !0), t.fn[t.fn.velocity ? "velocity" : "animate"].apply(this, arguments);
+  }, t.fn.unslider = function (n) {
+    return this.each(function (e, i) {
+      var o = t(i);if (!(t(i).data("unslider") instanceof t.Unslider)) {
+        if ("string" == typeof n && o.data("unslider")) {
+          n = n.split(":");var s = o.data("unslider")[n[0]];if (t.isFunction(s)) return s.apply(o, n[1] ? n[1].split(",") : null);
+        }return o.data("unslider", new t.Unslider(o, n));
       }
-
-      updateCartTabButton();
-      updateTotalCartPricing();
-
-      if (updatedCart.lineItems.length < 1) {
-        closeCart();
-      }
-    }).catch(function (errors) {
-      console.log('failed');
-      console.error(errors);
     });
-  }
-
-  /* Update Total Cart Pricing
-  ============================================================ */
-  function updateTotalCartPricing() {
-    $('.cart .pricing').text(formatAsMoney(cart.subtotal));
-  }
-
-  /* Open Cart
-  ============================================================ */
-  function openCart() {
-    $('.cart').addClass('js-active');
-  }
-
-  /* Close Cart
-  ============================================================ */
-  function closeCart() {
-    $('.cart').removeClass('js-active');
-    $('.overlay').removeClass('js-active');
-  }
-
-  /* Decrease product cart quantity amount by 1
-  ============================================================ */
-  function decrementQuantity(productId, variantId) {
-    updateQuantity(function (quantity) {
-      return quantity - 1;
-    }, productId, variantId);
-  }
-
-  /* Increase product cart quantity amount by 1
-  ============================================================ */
-  function incrementQuantity(productId, variantId) {
-    updateQuantity(function (quantity) {
-      return quantity + 1;
-    }, productId, variantId);
-  }
-
-  /* Find Cart Line Item By Variant Id
-  ============================================================ */
-  function findCartItemByVariantId(variantId) {
-    return cart.lineItems.filter(function (item) {
-      return item.variant_id === variantId;
-    })[0];
-  }
-
-  /* Determine action for variant adding/updating/removing
-  ============================================================ */
-  function addOrUpdateVariant(variant, quantity) {
-    openCart();
-
-    var cartLineItem = findCartItemByVariantId(variant.id);
-
-    if (cartLineItem) {
-      updateVariantInCart(cartLineItem, quantity);
-    } else {
-      addVariantToCart(variant, quantity);
-    }
-
-    updateCartTabButton();
-  }
-
-  /* Add 'quantity' amount of product 'variant' to cart
-  ============================================================ */
-  function addVariantToCart(variant, quantity) {
-    openCart();
-
-    cart.createLineItemsFromVariants({ variant: variant, quantity: quantity }).then(function () {
-      var cartItem = cart.lineItems.filter(function (item) {
-        return item.variant_id === variant.id;
-      })[0];
-
-      var $cartItem = renderCartItem(cartItem);
-      var $cartItemContainer = $('.cart-item-container');
-
-      $cartItemContainer.append($cartItem);
-
-      setTimeout(function () {
-        $cartItemContainer.find('.js-hidden').removeClass('js-hidden');
-      }, 0);
-    }).catch(function (errors) {
-      console.log('failed');
-      console.error(errors);
-    });
-
-    updateTotalCartPricing();
-    updateCartTabButton();
-  }
-
-  /* Return required markup for single item rendering
-  ============================================================ */
-  function renderCartItem(lineItem) {
-    var lineItemEmptyTemplate = $('#CartItemTemplate').html();
-    var $lineItemTemplate = $(lineItemEmptyTemplate);
-    var itemImage = lineItem.image.src;
-    var variantId = lineItem.variant_id;
-    var productId = lineItem.product_id;
-
-    $lineItemTemplate.attr('data-product-id', productId);
-    $lineItemTemplate.attr('data-variant-id', variantId);
-    $lineItemTemplate.addClass('js-hidden');
-    $lineItemTemplate.find('.cart-item__img').css('background-image', 'url(' + itemImage + ')');
-    $lineItemTemplate.find('.cart-item__title').text(lineItem.title);
-    $lineItemTemplate.find('.cart-item__variant-title').text(lineItem.variant_title);
-    $lineItemTemplate.find('.cart-item__price').text(formatAsMoney(lineItem.line_price));
-    $lineItemTemplate.find('.cart-item__quantity').attr('value', lineItem.quantity);
-
-    $lineItemTemplate.find('.quantity-decrement').attr({
-      'data-variant-id': variantId,
-      'data-product-id': productId
-    });
-
-    $lineItemTemplate.find('.quantity-increment').attr({
-      'data-variant-id': variantId,
-      'data-product-id': productId
-    });
-
-    return $lineItemTemplate;
-  }
-
-  /* Render the line items currently in the cart
-  ============================================================ */
-  function renderCartItems() {
-    var $cartItemContainer = $('.cart-item-container');
-
-    $cartItemContainer.empty();
-
-    //let lineItemEmptyTemplate = $('#CartItemTemplate').html();
-
-    var $cartLineItems = cart.lineItems.map(function (lineItem, index) {
-      return renderCartItem(lineItem);
-    });
-
-    $cartItemContainer.append($cartLineItems);
-
-    setTimeout(function () {
-      $cartItemContainer.find('.js-hidden').removeClass('js-hidden');
-    }, 0);
-
-    updateTotalCartPricing();
-  }
-
-  /* Format amount as currency
-  ============================================================ */
-  function formatAsMoney(amount, currency, thousandSeparator, decimalSeparator, localeDecimalSeparator) {
-    currency = currency || '$';
-    thousandSeparator = thousandSeparator || ',';
-    decimalSeparator = decimalSeparator || '.';
-    localeDecimalSeparator = localeDecimalSeparator || '.';
-
-    var regex = new RegExp('(\\d)(?=(\\d{3})+\\.)', 'g');
-
-    return currency + parseFloat(amount, 10).toFixed(2).replace(localeDecimalSeparator, decimalSeparator).replace(regex, '$1' + thousandSeparator).toString();
-  }
-
-  /* Update cart tab button
-  ============================================================ */
-  function updateCartTabButton() {
-    if (cart.lineItems.length > 0) {
-      $('.btn--cart-tab .btn__counter').html(cart.lineItemCount);
-      $('.btn--cart-tab').addClass('js-active');
-    } else {
-      $('.btn--cart-tab').removeClass('js-active');
-      $('.cart').removeClass('js-active');
-    }
-  }
-
-  /* Set previously focused item for escape handler
-  ============================================================ */
-  function setPreviousFocusItem(item) {
-    previousFocusItem = item;
-  }
-
-  /* Debounce taken from _.js (http://underscorejs.org/#debounce)
-  ============================================================ */
-  function debounce(func, wait, immediate) {
-    var timeout = void 0;
-
-    return function () {
-      var context = this;
-      var args = arguments;
-
-      var later = function later() {
-        timeout = null;
-
-        if (!immediate) func.apply(context, args);
-      };
-
-      var callNow = immediate && !timeout;
-
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-
-      if (callNow) func.apply(context, args);
-    };
-  }
+  };
 });

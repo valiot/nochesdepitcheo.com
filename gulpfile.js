@@ -68,9 +68,25 @@ gulp.task('styles', gulp.series('stylus', 'postcss', 'mincss', 'styles:watch'));
 // concatjs - Concatenates *.js files.
 gulp.task ('concatjs', function() {
   return gulp.src([paths.jsVendor, paths.jsModules])
-    .pipe(babel())
+    .pipe(babel()) // En teoría tu lo tenías antes del concat
     .pipe(concat('main.js'))
     .pipe(gulp.dest(paths.jsFolder));
+});
+
+// uglify - Compress *.js files.
+gulp.task('uglify', function() {
+  return gulp.src(paths.jsMain)
+    .pipe(uglify())
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest(paths.jsFolder));
+});
+
+// Scripts:watch Task - Reloads html files
+gulp.task('scripts:watch', function(){
+  return gulp.src(paths.jsMain)
+    .pipe(reload({ stream:true }));
 });
 
 // scripts - Run scripts tasks.

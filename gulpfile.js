@@ -15,38 +15,10 @@ var autoprefixer  = require('autoprefixer');
 var browserSync   = require('browser-sync').create();
 var reload        = browserSync.reload;
 
-// Paths
-var paths = {
-  html:     './**/*.html',
-  img:      './img/',
-  css:      './css/',
-  js:       './js/',
-  images:   './img/**/*.{JPG,jpg,png,gif}',
-  styles:   './css/stylus/styles.styl',
-  stylus:   './css/stylus/**/*.styl',
-  scripts:  [
-              './js/vendor/*.js',
-              './js/modules/*.js'
-            ]
-};
+// Include paths file.
+var paths = require('./paths');
 
-// server task - Run server
-gulp.task('server', function() {
-  browserSync.init({
-    server: {
-        baseDir: "./"
-    },
-    port: 3000,
-    notify: false,
-    browser: "google chrome"
-  });
-
-  gulp.watch(paths.html).on('change', reload);
-  gulp.watch(paths.stylus, gulp.series('styles'));
-  gulp.watch(paths.scripts, gulp.series('scripts'));
-});
-
-// Stylus Task - Compiles stylus file
+// stylus - Compiles stylus file.
 gulp.task('stylus', function() {
   var stylus_options = {
     use : [
@@ -54,12 +26,12 @@ gulp.task('stylus', function() {
     ]
   }
 
-  return gulp.src(paths.styles)
+  return gulp.src(paths.stylusMain)
     .pipe(stylus(stylus_options))
-    .pipe(gulp.dest(paths.css));
+    .pipe(gulp.dest(paths.cssFolder));
 });
 
-// Postcss Task - Run postcss processors
+// postcss - Run postcss processors.
 gulp.task('postcss', function() {
   var processors = [
     rucksack,
@@ -69,69 +41,70 @@ gulp.task('postcss', function() {
     })
   ];
 
-  return gulp.src(paths.css + 'styles.css')
+  return gulp.src(paths.cssMain)
     .pipe(postcss(processors))
-    .pipe(gulp.dest(paths.css))
+    .pipe(gulp.dest(paths.cssFolder))
 });
 
-// Mincss - Minify style.css file
+// mincss - Minify app.css file.
 gulp.task ('mincss', function() {
-  return gulp.src(paths.css + 'styles.css')
+  return gulp.src(paths.cssMain)
     .pipe(cssmin())
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest(paths.css));
-});
-
-// Concatjs Task - Concatenates *.js files
-gulp.task ('concatjs', function() {
-  return gulp.src(paths.scripts)
-    .pipe(babel())
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest(paths.js));
-});
-
-// Uglify Task - Compress *.js files
-gulp.task('uglify', function() {
-  return gulp.src(paths.js + 'main.js')
-    .pipe(uglify())
-    .pipe(rename({
-      suffix: '.min'
-    }))
-    .pipe(gulp.dest(paths.js));
+    .pipe(gulp.dest(paths.cssFolder));
 });
 
 // Styles:watch Task - Reloads html files
 gulp.task('styles:watch', function(){
-  return gulp.src(paths.styles)
+  return gulp.src(paths.stylusFiles)
     .pipe(reload({ stream:true }));
 });
 
-// Scripts:watch Task - Reloads html files
-gulp.task('scripts:watch', function(){
-  return gulp.src(paths.scripts)
-    .pipe(reload({ stream:true }));
-});
-
-// Optimize images
-gulp.task('images', function() {
-  return gulp.src(paths.images)
-    .pipe(imagemin())
-    .pipe(gulp.dest(paths.img));
-});
-
-// Styles Task
+// styles - Run styles tasks.
 gulp.task('styles', gulp.series('stylus', 'postcss', 'mincss', 'styles:watch'));
 
-// Scripts Task
+// concatjs - Concatenates *.js files.
+gulp.task ('concatjs', function() {
+  return gulp.src([paths.jsVendor, paths.jsModules])
+    .pipe(babel())
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest(paths.jsFolder));
+});
+
+// scripts - Run scripts tasks.
 gulp.task('scripts', gulp.series('concatjs', 'uglify', 'scripts:watch'));
 
-// Build Task
-gulp.task('build', gulp.parallel('styles', 'scripts'));
+// images - Optimize images.
+gulp.task('imageOptim', function() {
+  return gulp.src(paths.imgFiles)
+    .pipe(imageOptim.optimize())
+    .pipe(gulp.dest(paths.imgFolder));
+});
+
+// Images - Run images tasks.
+gulp.task('images', gulp.series('imageOptim'));
+
+// server task - Run server
+gulp.task('server', function() {
+  browserSync.init({
+    server: paths.siteDir,
+    port: 3000,
+    browser: "google chrome"
+  });
+
+  gulp.watch(paths.htmlFiles).on('change', reload);                   // Watch html
+  gulp.watch(paths.stylusFiles, gulp.series('styles'));               // Watch styles
+  gulp.watch(paths.jsModules, gulp.series('scripts'));                // Watch scripts
+  gulp.watch(paths.jsVendor, gulp.series('scripts'));                 // Watch scripts
+});
+
+// build - Builds assets
+gulp.task('build', gulp.series('styles', 'scripts'));
 
 // Develop Task
 gulp.task('develop', gulp.series('build', 'server'));
 
-// Production Task
-gulp.task('production', gulp.series('build', 'images', 'server'));
+// Default Task
+gulp.task('default', gulp.series('develop'));

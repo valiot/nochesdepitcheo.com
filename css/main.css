@@ -1369,17 +1369,17 @@ input[type=number]-webkit-outer-spin-button {
   float: left;
 }
 .mainShop-image1 {
-  background: url("../img/ndp-main3.jpg") no-repeat center;
+  background: url("/img/ndp-main3.jpg") no-repeat center;
   background-size: cover;
   height: 100vh;
 }
 .mainShop-image2 {
-  background: url("../img/ndp-main2.jpg") no-repeat center;
+  background: url("/img/ndp-main2.jpg") no-repeat center;
   background-size: cover;
   height: 50vh;
 }
 .mainShop-image3 {
-  background: url("../img/ndp-main1.jpg") no-repeat center;
+  background: url("/img/ndp-main1.jpg") no-repeat center;
   background-size: cover;
   height: 50vh;
 }

@@ -751,7 +751,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 'use strict';
 
-$(function () {
+(function () {
   var tshirtCollectionId = '379094994';
   var accessToken = '70713926e14ee6c0b19f901fe0e30efa';
   var domain = 'noches-de-pitcheo.myshopify.com';

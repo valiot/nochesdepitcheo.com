@@ -1,4 +1,4 @@
-$(function() {
+(function() {
   const tshirtCollectionId = '379094994';
   const accessToken        = '70713926e14ee6c0b19f901fe0e30efa';
   const domain             = 'noches-de-pitcheo.myshopify.com';

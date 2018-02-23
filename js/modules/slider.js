@@ -1,8 +1,8 @@
-function productImages() {
-  $('.product').on('click', '.btn-buy', function(){
-    console.log('Si funciona jQuery :)');
-  });
-};
+// function productImages() {
+//   $('.product').on('click', '.btn-buy', function(){
+//     console.log('Si funciona jQuery :)');
+//   });
+// };
 
 $(document).ready(function () {
   console.log('Si funciona jQuery :)');

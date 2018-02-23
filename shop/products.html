@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.min.css">
-</head>
-<body>
   <div id="product1" class="productInside">
-    <div class="productInside-images">
+    <!-- <div class="productInside-images">
       <a class="productInside-img" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
         <img src="/img/ndp-tshirts-marca10.jpg" alt="">
       </a>
@@ -24,6 +15,22 @@
       <a class="productInside-img" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
         <img src="/img/ndp-tshirts-marca10.jpg" alt="">
       </a>
+    </div> -->
+
+    <div class="my-slider">
+    	<ul>
+    		<li class="slide-image">My slide
+          <img src="/img/ndp-tshirts-marca10.jpg" alt="">
+        </li>
+
+    		<li class="slide-image">Another slide
+          <img src="/img/ndp-tshirts-marca10.jpg" alt="">
+        </li>
+
+    		<li class="slide-image">My last slide
+          <img src="/img/ndp-tshirts-marca10.jpg" alt="">
+        </li>
+    	</ul>
     </div>
 
     <div class="productInside-details">
@@ -32,7 +39,7 @@
       <p>T-shirt polister 100% algodón, corte femenino fit body</p>
 
       <div class="productInside-inputs">
-        <div class="productInside-colors"> 
+        <div class="productInside-colors">
           <label class="tag" for="choice-color">COLOR</label>
           <form class="checkboxRadio" action="">
             <input class="checkboxRadio-1 checkboxRadio--active" type="radio" id="choice-color1" name="checkbox-color" value="color1">
@@ -52,7 +59,7 @@
 
         <div class="product-variantSelector">
           <p class="tag">TALLA</p>
-          
+
           <select class="productInside-select" name="size">
             <option value="S">S</option>
             <option value="M">M</option>
@@ -67,9 +74,16 @@
         <button class="btn btn--buy">comprar</button>
       </div>
     </div>
-  </div>
 
-  <script src="//code.jquery.com/jquery-latest.js"></script>
-  <script src="/js/main.min.js"></script>
-</body>
-</html>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      console.log('Si funciona jQuery :)');
+
+      $('.mySlider').unslider( {
+        nav: true,
+        speed: 1000,
+        infinite: true
+      });
+    });
+    </script>
+  </div>

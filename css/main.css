@@ -436,6 +436,7 @@ p {
   font-family: 'Patua One';
   font-size: 2rem;
   color: #00285a;
+  margin: 0;
 }
 .visually-hidden {
   border: 0;
@@ -556,6 +557,10 @@ figure img {
   letter-spacing: 1px;
   font-weight: 600;
   cursor: pointer;
+}
+.btn--white {
+  background-color: #fff;
+  color: #00285a;
 }
 .btn--principal {
   background-color: #00285a;
@@ -1260,20 +1265,28 @@ input[type=number]-webkit-outer-spin-button {
   width: 100%;
   display: block;
 }
-.indexBody {
-  background: url("../img/ndp-bg.jpg") center no-repeat;
-  background-size: cover;
+.ciudades {
+  background-color: #00285a;
+  min-height: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
 }
-@media only screen and (max-width: 600px) {
-  .indexBody {
-    background-image: none;
-    background-color: #f9f9f9;
-  }
+.ciudades .btn {
+  margin-right: 1rem;
+}
+.indexBody {
+  background-color: #f9f9f9;
 }
 .indexMain {
-  padding-left: calc(50% - (760px / 2));
-  padding-right: calc(50% - (760px / 2));
-  min-height: 100vh;
+  min-height: 60vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1283,11 +1296,8 @@ input[type=number]-webkit-outer-spin-button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   text-align: center;
+  background-size: cover;
   position: relative;
 }
 @media only screen and (max-width: 1140px) {
@@ -1318,6 +1328,16 @@ input[type=number]-webkit-outer-spin-button {
   color: #00285a;
   font-weight: 500;
 }
+.indexMain:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,81,147,0.5)), to(rgba(0,40,90,0.5)));
+  background-image: linear-gradient(-180deg, rgba(0,81,147,0.5) 0%, rgba(0,40,90,0.5) 100%);
+}
 .mainShop-image {
   width: 50%;
   float: left;
@@ -1336,27 +1356,6 @@ input[type=number]-webkit-outer-spin-button {
   background: url("/img/ndp-main1.jpg") no-repeat center;
   background-size: cover;
   height: 50vh;
-}
-.welcome {
-  padding-left: calc(50% - (1120px / 2));
-  padding-right: calc(50% - (1120px / 2));
-  text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding-bottom: 10rem;
-  padding-top: 10rem;
-}
-.welcome-intro {
-  width: 700px;
-  font-size: 1.7rem;
 }
 .productContainer {
   padding-left: calc(50% - (1120px / 2));
@@ -1391,4 +1390,28 @@ input[type=number]-webkit-outer-spin-button {
   padding-top: 4rem;
   padding-bottom: 4rem;
   background-color: #fff;
+}
+.welcome {
+  padding-left: calc(50% - (760px / 2));
+  padding-right: calc(50% - (760px / 2));
+  text-align: center;
+  min-height: 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-bottom: 10rem;
+  padding-top: 10rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.welcome-intro {
+  font-size: 1.7rem;
+  margin: 0;
 }

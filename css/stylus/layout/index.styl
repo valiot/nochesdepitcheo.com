@@ -1,36 +1,39 @@
 .indexBody
-  background url("../img/ndp-bg.jpg") center no-repeat
-  background-size cover
-  
-  +below($mobile)
-    background-image none
-    background-color $light-gray
-  
+  background-color $light-gray
+
 .indexMain
-  wrapped(760px)
-  min-height 100vh
+  min-height 60vh
   display flex
   justify-content center
   align-items center
-  flex-direction column
   text-align center
+  background-size cover
   position relative
-  
+
   +below($desktop)
     wrapped(90%)
-  
+
   +below($mobile)
     padding-top 6rem
     padding-bottom 6rem
     justify-content flex-start
-    
+
   .title--big span
     font-weight 600
     display block
-    
+
     +below($tablet)
       display inline
-    
+
   p
     color $principal
     font-weight 500
+
+.indexMain:before
+  position absolute
+  content ''
+  top 0
+  left 0
+  bottom 0
+  right 0
+  background-image linear-gradient(-180deg, rgba(0,81,147,0.50) 0%, rgba(0,40,90,0.50) 100%)

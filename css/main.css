@@ -883,6 +883,15 @@ input[type=number]-webkit-outer-spin-button {
           justify-content: space-between;
   background-color: #00285a;
   padding-top: 4rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.footer-info {
+  width: 250px;
+}
+.footer-info p {
+  color: #fff;
 }
 .social {
   display: -webkit-box;

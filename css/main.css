@@ -1139,7 +1139,7 @@ input[type=number]-webkit-outer-spin-button {
   text-align: center;
 }
 .product-info {
-  padding: 1rem 2.3rem;
+  padding: 1rem 2.3rem 0;
 }
 .productContainer {
   padding-left: calc(50% - (1120px / 2));

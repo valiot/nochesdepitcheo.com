@@ -26,15 +26,12 @@
   background-color $green
   max-width 150px
 
-.btn-close
-  border-radius 50%
-  background-color $green
-  position absolute
-  right 0
-  width 30px
-  height 30px
-  margin-right 2rem
-  margin-top 2rem
-  text-align center
-  color white
-  font-weight 600
+.btn--secondary
+  border 2px solid $gray
+  color $gray
+  padding .25rem 2rem
+  background-color transparent
+
+  &.active
+    border 2px solid $green
+    color $green

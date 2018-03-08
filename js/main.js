@@ -1211,18 +1211,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 'use strict';
 
-// function productImages() {
-//   $('.product').on('click', '.btn-buy', function(){
-//     console.log('Si funciona jQuery :)');
-//   });
-// };
-
-$(document).ready(function () {
-  console.log('Si funciona jQuery :)');
-
+function startSlider() {
   $('.mySlider').unslider({
-    nav: false,
-    speed: 1000,
+    nav: true,
+    speed: 400,
     infinite: true
   });
-});
+}

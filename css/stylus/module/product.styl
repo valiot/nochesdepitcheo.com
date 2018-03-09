@@ -9,7 +9,8 @@
 
 .product-home
   display flex
-  flex-direction column
+  position relative
+  flex-wrap wrap
   width 350px
   background #FFFFFF
   box-shadow 0 10px 30px 0 rgba(0,0,0,0.20)
@@ -17,8 +18,11 @@
   margin-top 2rem
   text-align center
 
-  .btn
-    transform translateY(50%)translateX(65%)
+  .btn--buy
+    position absolute
+    bottom 0
+    left 50%
+    transform translate(-50%, 50%)
 
 .product-image img
   border-radius 5px
@@ -35,21 +39,4 @@
   text-align center
 
 .product-info
-  padding 1rem 2.3rem 0
-
-.productContainer
-  wrapped()
-  min-height 500px
-  padding-bottom 5rem
-  padding-top 3rem
-  display flex
-  justify-content center
-
-.productContainer.productContainer-home
-  flex-wrap wrap
-  justify-content space-around
-  margin 2rem 0
-
-.productContainer--news
-  background-color $light-blue
-  position relative
+  padding 2rem 3rem

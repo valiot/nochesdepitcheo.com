@@ -1,11 +1,16 @@
 .product
+  position relative
   display flex
   flex-wrap wrap
   justify-content center
   margin 0 1.5rem
+  width 50%
 
-  .btn
-    transform translateY(-50%)
+  .btn--buy
+    position absolute
+    bottom 0
+    left 50%
+    transform translate(-50%, 50%)
 
 .product-home
   display flex
@@ -25,6 +30,7 @@
     transform translate(-50%, 50%)
 
 .product-image img
+  width 100%
   border-radius 5px
   box-shadow 0 10px 30px 0 rgba(0,0,0,0.20)
   padding 2rem 4rem

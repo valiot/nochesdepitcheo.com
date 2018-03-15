@@ -227,10 +227,7 @@ template {
   border: none;
 }
 .unslider-arrow {
-  position: absolute;
-  left: 20px;
-  z-index: 2;
-  cursor: pointer;
+  display: none;
 }
 .unslider-arrow.next {
   left: auto;
@@ -1502,6 +1499,13 @@ select {
   max-width: 900px;
   height: 80vh;
 }
+@media only screen and (max-width: 750px) {
+  .productInside {
+    min-width: 50%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
 .productInside-name {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1551,6 +1555,26 @@ select {
 .productInside-details:last-child {
   margin-right: 0;
 }
+@media only screen and (max-width: 750px) {
+  .productInside-details {
+    -webkit-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    -ms-flex-preferred-size: calc(99.9% * 1/1);
+        flex-basis: calc(99.9% * 1/1);
+    max-width: calc(99.9% * 1/1);
+    width: calc(99.9% * 1/1);
+  }
+  .productInside-details:nth-child(1n) {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .productInside-details:last-child {
+    margin-right: 0;
+  }
+}
 .productInside-details p {
   margin: 0.5rem 0 2rem 0;
 }
@@ -1560,6 +1584,15 @@ select {
   display: flex;
   margin-bottom: 2rem;
 }
+@media only screen and (max-width: 750px) {
+  .productInside-inputs {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-bottom: 0;
+  }
+}
 .productInside-colors {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1568,7 +1601,7 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-right: 2rem;
+  margin-right: 1.5rem;
 }
 .product-variant {
   display: -webkit-box;
@@ -1577,6 +1610,11 @@ select {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-right: 1rem;
+}
+@media only screen and (max-width: 750px) {
+  .product-variant {
+    margin-bottom: 2rem;
+  }
 }
 .product-variant:last-child {
   margin-right: 0;
@@ -1599,6 +1637,11 @@ select {
   height: 80vh;
   background-size: cover;
   background-position: center;
+}
+@media only screen and (max-width: 750px) {
+  .slide-image {
+    height: 50vh;
+  }
 }
 .unslider {
   position: relative;

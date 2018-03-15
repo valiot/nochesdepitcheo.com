@@ -5,6 +5,10 @@
   max-width 900px
   height 80vh
 
+  +below(750px)
+    min-width 50%
+    flex-wrap wrap
+
 .productInside-name
   display flex
   align-items center
@@ -26,6 +30,9 @@
   flex-direction column
   justify-content center
 
+  +below(750px)
+    lost-column 1/1 0 0
+
   p
     margin .5rem 0 2rem 0
 
@@ -33,15 +40,22 @@
   display flex
   margin-bottom 2rem
 
+  +below(750px)
+    flex-direction column
+    margin-bottom 0
+
 .productInside-colors
   display flex
   flex-direction column
-  margin-right 2rem
+  margin-right 1.5rem
 
 .product-variant
   display flex
   flex-wrap wrap
   margin-right 1rem
+
+  +below(750px)
+    margin-bottom 2rem
 
   &:last-child
     margin-right 0

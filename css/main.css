@@ -402,6 +402,9 @@ template {
     font-size: 1.5rem;
   }
 }
+.title + p {
+  margin-top: 2rem;
+}
 .title--big {
   font-size: calc(2.3rem + 1.2000000000000002 * ((100vw - 26.25rem) / 53.75));
 }
@@ -459,6 +462,11 @@ template {
 p {
   font-size: 16px;
   color: #00285a;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+p + p {
+  margin-top: 1rem;
 }
 .tag {
   color: #474d54;
@@ -968,6 +976,13 @@ input[type=number]-webkit-outer-spin-button {
 .featherlight .featherlight-content {
   padding: 0;
   border-bottom: 0;
+}
+@media only screen and (max-width: 600px) {
+  .featherlight .featherlight-content {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
 }
 .featherlight .featherlight-close-icon {
   background-color: #17d10c;
@@ -1502,29 +1517,27 @@ select {
 @media only screen and (max-width: 750px) {
   .productInside {
     min-width: 50%;
+    width: 100%;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
 }
-.productInside-name {
+.productInside .btn--secondary {
+  margin-right: 1rem;
+}
+.productInside .btn--secondary:last-child {
+  margin-right: 0;
+}
+.productInside-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 .productInside-gender {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 1.5rem;
-}
-.btn--secondary {
-  margin-right: 1rem;
-}
-.btn--secondary:last-child {
-  margin-right: 0;
 }
 .productInside-details {
   -webkit-box-flex: 0;
@@ -1566,6 +1579,7 @@ select {
         flex-basis: calc(99.9% * 1/1);
     max-width: calc(99.9% * 1/1);
     width: calc(99.9% * 1/1);
+    padding: 1.5rem;
   }
   .productInside-details:nth-child(1n) {
     margin-right: 0;
@@ -1575,9 +1589,6 @@ select {
     margin-right: 0;
   }
 }
-.productInside-details p {
-  margin: 0.5rem 0 2rem 0;
-}
 .productInside-inputs {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1586,10 +1597,6 @@ select {
 }
 @media only screen and (max-width: 750px) {
   .productInside-inputs {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
     margin-bottom: 0;
   }
 }
@@ -1602,6 +1609,10 @@ select {
       -ms-flex-direction: column;
           flex-direction: column;
   margin-right: 1.5rem;
+}
+.productInside-description {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .product-variant {
   display: -webkit-box;
@@ -1627,10 +1638,8 @@ select {
   margin-top: 0.5rem;
 }
 .product-price {
-  margin-left: 2rem;
   color: #17d10c;
-  font-weight: 600;
-  font-size: 2rem;
+  margin-left: 2rem;
 }
 .slide-image {
   display: block;

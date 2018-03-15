@@ -7,21 +7,21 @@
 
   +below(750px)
     min-width 50%
+    width 100%
     flex-wrap wrap
 
-.productInside-name
-  display flex
-  align-items center
-
-.productInside-gender
-  display flex
-  margin-bottom 1.5rem
-
-.btn--secondary
+  .btn--secondary
     margin-right 1rem
 
     &:last-child
       margin-right 0
+
+.productInside-header
+  display flex
+
+.productInside-gender
+  display flex
+  margin-bottom 1.5rem
 
 .productInside-details
   lost-column 1/2 0 0
@@ -32,22 +32,23 @@
 
   +below(750px)
     lost-column 1/1 0 0
-
-  p
-    margin .5rem 0 2rem 0
+    padding 1.5rem
 
 .productInside-inputs
   display flex
   margin-bottom 2rem
 
   +below(750px)
-    flex-direction column
     margin-bottom 0
 
 .productInside-colors
   display flex
   flex-direction column
   margin-right 1.5rem
+
+.productInside-description
+  margin-top 1.5rem
+  margin-bottom 1.5rem
 
 .product-variant
   display flex
@@ -68,7 +69,5 @@
     margin-top .5rem
 
 .product-price
-  margin-left 2rem
   color $green
-  font-weight 600
-  font-size 2rem
+  margin-left 2rem

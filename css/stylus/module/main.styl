@@ -2,6 +2,9 @@
   width 50%
   float left
 
+  +below(750px)
+    width 100%
+
 .mainShop-image1
   background url(/img/ndp-main3.jpg) no-repeat center
   background-size cover
@@ -10,9 +13,15 @@
 .mainShop-image2
   background url(/img/ndp-main2.jpg) no-repeat center
   background-size cover
-  height 50vh
 
 .mainShop-image3
   background url(/img/ndp-main1.jpg) no-repeat center
   background-size cover
+
+
+.mainShop-image2
+.mainShop-image3
   height 50vh
+
+  +below(750px)
+    display none

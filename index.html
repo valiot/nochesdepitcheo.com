@@ -7,11 +7,12 @@
   <title>Noches de Pitcheo</title>
   <meta name="description" content="En nuestras sesiones ayudamos a los emprendedores, brindándoles un espacio donde pueden recibir feedback de la comunidad sobre cómo mejorar su pitch, validar ideas, entre otras cosas.">
   <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
   <link rel="stylesheet" href="css/main.min.css">
 </head>
 <body class="indexBody">
 
-  <header class="mainHeader mainHeader--shop is-scrolled">
+  <header class="mainHeader is-scrolled">
     <a href="/">
       <img class="logo" src="/img/ndp-logo.svg" alt="logo">
     </a>
@@ -21,6 +22,10 @@
       <a href="https://www.facebook.com/pg/nochesdepitcheo/events/" class="mainNav-link" target="_blank">Eventos</a>
       <a href="#" class="mainNav-link">Contacto</a>
     </nav>
+
+    <button id="burguerIcon" class="burguerIcon">
+      <div class="burguerIcon-inner"></div>
+    </button>
   </header>
 
   <main class="indexMain" style="background-image: url(/img/IMG_9230.jpg)">
@@ -37,14 +42,12 @@
   </section>
 
   <section class="ciudades">
-    <div class="">
-      <h3 class="title title--white">Ciudades</h3>
-      <a class="btn btn--white" href="https://www.facebook.com/nochesdepitcheo/">Monterrey</a>
-      <a class="btn btn--white" href="https://www.facebook.com/nochesdepitcheocdmx/">Ciudad de México</a>
-      <a class="btn btn--white" href="https://www.facebook.com/nochesdepitcheoguadalajara/">Guadalajara</a>
-      <a class="btn btn--white" href="https://www.facebook.com/nochesdepitcheonuevolaredo/">Nuevo Laredo</a>
-      <a class="btn btn--white" href="https://www.facebook.com/nochesdepitcheomerida/">Mérida</a>
-    </div>
+    <h3 class="title title--white">Ciudades</h3>
+    <a class="btn btn--white" href="https://www.facebook.com/nochesdepitcheo/">Monterrey</a>
+    <a class="btn btn--white" href="https://www.facebook.com/nochesdepitcheocdmx/">Ciudad de México</a>
+    <a class="btn btn--white" href="https://www.facebook.com/nochesdepitcheoguadalajara/">Guadalajara</a>
+    <a class="btn btn--white" href="https://www.facebook.com/nochesdepitcheonuevolaredo/">Nuevo Laredo</a>
+    <a class="btn btn--white" href="https://www.facebook.com/nochesdepitcheomerida/">Mérida</a>
   </section>
 
   <section class="productContainer productContainer-home">
@@ -93,28 +96,30 @@
       <p class="tag">@nochesdepitcheo</p>
     </div>
 
-    <div class="instagram">
-      <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
-        <img src="/img/IMG_0841.jpg" alt="">
-      </a>
-      <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
-        <img src="/img/IMG_0841.jpg" alt="">
-      </a>
-      <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
-        <img src="/img/IMG_0841.jpg" alt="">
-      </a>
-      <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
-        <img src="/img/IMG_0841.jpg" alt="">
-      </a>
-      <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
-        <img src="/img/IMG_0841.jpg" alt="">
-      </a>
-      <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
-        <img src="/img/IMG_0841.jpg" alt="">
-      </a>
-      <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
-        <img src="/img/IMG_0841.jpg" alt="">
-      </a>
+    <div class="instafeed">
+      <div class="instafeed-container">
+        <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
+          <img src="/img/IMG_0841.jpg" alt="">
+        </a>
+        <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
+          <img src="/img/IMG_0841.jpg" alt="">
+        </a>
+        <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
+          <img src="/img/IMG_0841.jpg" alt="">
+        </a>
+        <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
+          <img src="/img/IMG_0841.jpg" alt="">
+        </a>
+        <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
+          <img src="/img/IMG_0841.jpg" alt="">
+        </a>
+        <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
+          <img src="/img/IMG_0841.jpg" alt="">
+        </a>
+        <a class="instagram-image" href="https://www.instagram.com/p/BYetYWRn732/?taken-by=nochesdepitcheo">
+          <img src="/img/IMG_0841.jpg" alt="">
+        </a>
+      </div>
     </div>
   </section>
 
@@ -141,5 +146,21 @@
     </div>
   </footer>
 
+  <nav class="mobileNav">
+    <ul>
+      <li class="mobileNav-item">
+        <a class="mobileNav-link tag" href="/shop/">Shop</a>
+      </li>
+      <li class="mobileNav-item">
+        <a class="mobileNav-link tag" href="https://www.facebook.com/pg/nochesdepitcheo/events/">Events</a>
+      </li>
+      <li class="mobileNav-item">
+        <a class="mobileNav-link tag" href="/products.html">Contact</a>
+      </li>
+    </ul>
+  </nav>
+
+  <script src="//code.jquery.com/jquery-latest.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>

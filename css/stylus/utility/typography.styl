@@ -8,6 +8,7 @@
   letter-spacing 0.1rem
   position relative
   margin-bottom 0
+  text-align center
 
   &--big
     font-size responsive 2.3rem 3.5rem
@@ -25,10 +26,16 @@
   position absolute
   top 50%
 
+  +below(750px)
+    display none
+
 .title--bold
   font-size 3rem
   color $red
   text-transform uppercase
+
+  +below(750px)
+    font-size 2rem
 
 .subtitle
   margin-top 0
@@ -53,6 +60,9 @@ p
 
 .tag--slogan
   font-family 'Patua One'
-  font-size 2rem
+  font-size 1.5rem
   color $principal
   margin 0
+
+  +below(750px)
+    font-size 1rem

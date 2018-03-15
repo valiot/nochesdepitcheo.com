@@ -1,30 +1,5 @@
 .mainHeader
   wrapped(90%)
-  position absolute
-  top 2rem
-  right 0
-  left 0
-  display flex
-  align-items center
-  justify-content space-between
-  z-index 10
-  
-  +below($mobile)
-    background-color $light-gray
-    justify-content center
-    position static
-    padding-top 2rem
-    
-.mainHeader-logo
-  width 260px
-  text-decoration none
-  
-  & img
-    width 100%
-    display block  
-    
-.mainHeader--shop
-  wrapped()
   display flex
   width 100%
   top 0
@@ -32,6 +7,19 @@
   padding-top .5rem
   padding-bottom .5rem
   align-items center
+  z-index 10
+
+  +below($mobile)
+    background-color $light-gray
+    position static
+
+.mainHeader-logo
+  width 260px
+  text-decoration none
+
+  & img
+    width 100%
+    display block
 
 .is-scrolled
   position fixed

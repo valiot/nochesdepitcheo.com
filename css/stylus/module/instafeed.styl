@@ -1,0 +1,40 @@
+.instafeed
+  text-align center
+
+  .title
+    margin-bottom 8rem
+
+  &-container
+    clear fix
+
+    &:hover a img
+      opacity .5
+
+    a
+      width 20%
+      float left
+      display block
+      background-color $dark-blue
+
+      +below(38rem)
+        width 50%
+
+      +below(28rem)
+        width 100%
+
+      &:first-of-type
+        width 40%
+
+        +below(38rem)
+          width 50%
+
+        +below(28rem)
+          width 100%
+
+      &:hover img
+        opacity 1
+
+    a img
+      width 100%
+      display block
+      transition 350ms all ease-in-out

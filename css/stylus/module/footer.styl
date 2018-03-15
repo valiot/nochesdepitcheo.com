@@ -7,6 +7,14 @@
   padding-top 4rem
   align-items center
 
+  +below($desktop)
+    wrapped(90%)
+    display flex
+    height 400px
+    text-align center
+    flex-direction column
+    justify-content space-around
+
 .footer-info
   width 250px
 
@@ -19,3 +27,6 @@
 
 .social-link
   margin-right 2rem
+
+  &:last-child
+    margin-right 0

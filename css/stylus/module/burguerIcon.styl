@@ -1,0 +1,66 @@
+.burguerIcon
+  display flex
+  align-items center
+  position relative
+  margin 0
+  padding 0
+  width 2.5rem
+  height 2.5rem
+  appearance none
+  box-shadow none
+  border-radius none
+  border none
+  cursor pointer
+  background-color transparent
+
+  +above($mobile)
+    display none
+
+  &:focus
+    outline 0
+
+.burguerIcon-inner
+  width 100%
+  display block
+  height 4px
+  background-color $principal
+  position relative
+  transition background 0s .3s
+
+  &::before,
+  &::after
+    position absolute
+    display block
+    left 0
+    width 100%
+    height 4px
+    background-color $principal
+    content ''
+    transition-duration .3s, .3s
+    transition-delay .3s, 0s
+
+  &:before
+    top -10px
+    transition-property top, transform
+
+  &:after
+    bottom -10px
+    transition-property bottom, transform
+
+.burguerIcon.is-active
+
+  .burguerIcon-inner
+    background-color transparent
+
+    &::after,
+    &::before
+      transition-delay 0s, .3s
+      background-color $principal
+
+    &::before
+      top 0
+      transform rotate(45deg)
+
+    &::after
+      bottom 0
+      transform rotate(-45deg)

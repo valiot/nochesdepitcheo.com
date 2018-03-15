@@ -4,13 +4,17 @@
   flex-wrap wrap
   justify-content center
   margin 0 1.5rem
-  width 50%
+  lost-column 6/12
 
   .btn--buy
     position absolute
     bottom 0
     left 50%
     transform translate(-50%, 50%)
+
+  +below(750px)
+    lost-column 1/1
+    margin-bottom 4rem
 
 .product-home
   display flex
@@ -29,20 +33,17 @@
     left 50%
     transform translate(-50%, 50%)
 
+  +below($mobile)
+    margin-bottom 1.5rem
+
 .product-image img
   width 100%
   border-radius 5px
   box-shadow 0 10px 30px 0 rgba(0,0,0,0.20)
-  padding 2rem 4rem
-
-.product-image--new img
-  padding 0
 
 .product-imageHome img
   width 100%
-
-.product-title
-  text-align center
+  border-radius 5px 5px 0 0
 
 .product-info
   padding 2rem 3rem

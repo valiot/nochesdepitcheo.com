@@ -751,6 +751,27 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 'use strict';
 
+$(document).ready(function () {
+  $('#burguerIcon').click(function () {
+    $(this).toggleClass("is-active"), $('.mainHeader').toggleClass("is-active"), $('.mobileNav').toggleClass("is-active");
+  });
+});
+'use strict';
+
+$(document).ready(function () {
+  $(window).scroll(function () {
+    var $header = $('.mainHeader');
+    var $headerTop = $(window).scrollTop();
+
+    if ($headerTop > 1) {
+      $header.addClass('is-scrolled');
+    } else {
+      $header.removeClass('is-scrolled');
+    }
+  });
+});
+'use strict';
+
 (function () {
   var tshirtCollectionId = '379094994';
   var accessToken = '70713926e14ee6c0b19f901fe0e30efa';

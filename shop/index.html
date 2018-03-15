@@ -11,10 +11,11 @@
   <meta property="og:type"        content="website" />
   <meta property="og:image"       content="http://www.nochesdepitcheo.com/img/ndp-fb-shop.jpg" />
   <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.min.css">
 </head>
 <body>
-  <header class="mainHeader mainHeader--shop is-scrolled">
+  <header class="mainHeader is-scrolled">
     <a href="/">
       <img class="logo" src="/img/ndp-logo.svg" alt="logo">
     </a>
@@ -24,6 +25,10 @@
       <a href="https://www.facebook.com/pg/nochesdepitcheo/events/" class="mainNav-link" target="_blank">Eventos</a>
       <a href="#" class="mainNav-link">Contacto</a>
     </nav>
+
+    <button id="burguerIcon" class="burguerIcon">
+      <div class="burguerIcon-inner"></div>
+    </button>
   </header>
 
   <main class="mainShop">
@@ -42,16 +47,16 @@
     <h2 class="title title--vertical">New arrivals</h2>
 
     <div class="product">
-      <h2 class="product-title subtitle subtitle--white">Growth tee</h2>
-      <figure class="product-image product-image--new">
+      <h2 class="subtitle subtitle--white">Growth tee</h2>
+      <figure class="product-image">
         <img src="/img/tshirts-growth.jpg" alt="image-tshirt">
       </figure>
       <a class="btn btn--buy" href="#" data-featherlight="product-growth-woman.html #product1" data-featherlight-after-open="startSlider()">comprar</a>
     </div>
 
     <div class="product">
-      <h2 class="product-title subtitle subtitle--white">Coffee tee</h2>
-      <figure class="product-image product-image--new">
+      <h2 class="subtitle subtitle--white">Coffee tee</h2>
+      <figure class="product-image">
         <img src="/img/tshirts-coffee.jpg" alt="image-tshirt">
       </figure>
       <a class="btn btn--buy" href="#" data-featherlight="product-coffee-woman.html #product2" data-featherlight-after-open="startSlider()">comprar</a>
@@ -100,6 +105,20 @@
       </a>
     </div>
   </footer>
+
+  <nav class="mobileNav">
+    <ul>
+      <li class="mobileNav-item">
+        <a class="mobileNav-link mobileNav-link__active" href="/">Shop</a>
+      </li>
+      <li class="mobileNav-item">
+        <a class="mobileNav-link" href="/innovation-process.html">Events</a>
+      </li>
+      <li class="mobileNav-item">
+        <a class="mobileNav-link" href="/products.html">Contact</a>
+      </li>
+    </ul>
+  </nav>
 
   <script src="//code.jquery.com/jquery-latest.js"></script>
   <script src="/js/main.js"></script>
